@@ -2,11 +2,11 @@
 
 ## Lab 9
 
-- **Implement and Test Stack** | **Owner:** Joey Hughes, **Due:** 11/6, **Status:** Started
+- **Implement and Test Stack** | **Owner:** Joey Hughes, **Due:** 11/6, **Status:** Finished
 
-- **Implement and Test Queues** | **Owner:** Warren Long, **Due:** 11/6, **Status:** Done
+- **Implement and Test Queues** | **Owner:** Warren Long, **Due:** 11/6, **Status:** Finished
 
-- **Optimize LinkedAbstractList** | **Owner:** David Mond, **Due:** 11/6, **Status:** Pending
+- **Optimize LinkedAbstractList** | **Owner:** David Mond, **Due:** 11/6, **Status:** Started
 
 - **Implement and Test Waitlist** | **Owner:** Joey Hughes, **Due:** 11/9, **Status:** Pending
 
