@@ -4,7 +4,7 @@
 
 - **Implement and Test Stack** | **Owner:** Joey Hughes, **Due:** 11/6, **Status:** Started
 
-- **Implement and Test Queues** | **Owner:** Warren Long, **Due:** 11/6, **Status:** Pending
+- **Implement and Test Queues** | **Owner:** Warren Long, **Due:** 11/6, **Status:** Done
 
 - **Optimize LinkedAbstractList** | **Owner:** David Mond, **Due:** 11/6, **Status:** Pending
 
