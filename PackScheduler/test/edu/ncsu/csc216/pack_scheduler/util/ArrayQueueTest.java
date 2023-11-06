@@ -102,12 +102,6 @@ class ArrayQueueTest {
 		assertEquals(10, q.dequeue());
 		assertEquals(11, q.dequeue());
 	}
-	@Test
-	void testRemoveMultipleElements() {
-	}
-	@Test
-	void testRemoveLastElement() {
-	}
 	/**
 	 * testing interleaved insertions and removals
 	 */
@@ -148,7 +142,7 @@ class ArrayQueueTest {
 
 	}
 	/**
-	 * testing removing from an empty queue
+	 * Testing removing from an empty queue
 	 */
 	@Test
 	void testRemoveEmptyQueue() {
@@ -156,7 +150,7 @@ class ArrayQueueTest {
 		assertThrows(NoSuchElementException.class, () -> q.dequeue());
 	}
 	/**
-	 * testing setting the capacity
+	 * Testing setting the capacity
 	 */
 	@Test
 	void testSetCapacity() {

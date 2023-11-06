@@ -6,6 +6,11 @@ import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Test class for the LinkedQueue class.
+ * 
+ * @author Warren Long
+ */
 class LinkedQueueTest {
 	/**
 	 * tests inserting a single element
@@ -77,14 +82,8 @@ class LinkedQueueTest {
 		assertEquals(10, q.dequeue());
 		assertEquals(11, q.dequeue());
 	}
-	@Test
-	void testRemoveMultipleElements() {
-	}
-	@Test
-	void testRemoveLastElement() {
-	}
 	/**
-	 * testing interleaved insertions and removals
+	 * Testing interleaved insertions and removals
 	 */
 	@Test
 	void testInterleavedInsertAndRemove() {

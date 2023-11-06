@@ -1,6 +1,5 @@
 package edu.ncsu.csc216.pack_scheduler.util;
 
-import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
 /**
