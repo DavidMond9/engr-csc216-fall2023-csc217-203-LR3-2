@@ -100,7 +100,7 @@ public class CourseRoll {
 	 *                                  enrolled.
 	 */
 	public void enroll(Student newStudent) {
-		if(newStudent == null || !canEnroll(newStudent)) {
+		if(newStudent == null && canEnroll(newStudent)) {
 			throw new IllegalArgumentException("Student cannot be enrolled.");
 		}
 		// this might not work
