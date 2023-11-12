@@ -1,5 +1,7 @@
 package edu.ncsu.csc216.pack_scheduler.util;
 
+import java.util.EmptyStackException;
+
 /**
  * A Stack linear data structure with an underlying LinkedAbstractList.
  * @param <E> The type of element to use in the LinkedStack.
@@ -37,7 +39,7 @@ public class LinkedStack<E> implements Stack<E> {
 	 */
 	@Override
 	public E pop() {
-		if(list.size() == 0) throw new IllegalArgumentException("The stack is empty.");
+		if(list.size() == 0) throw new EmptyStackException();
 		return list.remove(list.size() - 1);
 	}
 

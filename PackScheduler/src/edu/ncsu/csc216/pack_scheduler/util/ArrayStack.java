@@ -1,5 +1,7 @@
 package edu.ncsu.csc216.pack_scheduler.util;
 
+import java.util.EmptyStackException;
+
 /**
  * A Stack linear data structure with an underlying ArrayList.
  * @param <E> The type of element to use in the ArrayStack.
@@ -42,7 +44,7 @@ public class ArrayStack<E> implements Stack<E> {
 	 */
 	@Override
 	public E pop() {
-		if(list.size() == 0) throw new IllegalArgumentException("The stack is empty.");
+		if(list.size() == 0) throw new EmptyStackException();
 		E data = list.remove(list.size() - 1);
 		return data;
 	}
