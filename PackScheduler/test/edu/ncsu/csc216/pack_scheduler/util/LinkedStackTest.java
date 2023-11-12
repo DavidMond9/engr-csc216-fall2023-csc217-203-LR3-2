@@ -2,6 +2,8 @@ package edu.ncsu.csc216.pack_scheduler.util;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.EmptyStackException;
+
 import org.junit.jupiter.api.Test;
 
 /**
@@ -62,7 +64,7 @@ class LinkedStackTest {
 		assertEquals(1, list.size());
 		assertEquals("element 1", list.pop());
 		assertEquals(0, list.size());
-		assertThrows(IllegalArgumentException.class, () -> {list.pop(); });
+		assertThrows(EmptyStackException.class, () -> {list.pop(); });
 		assertEquals(0, list.size());
 	}
 
