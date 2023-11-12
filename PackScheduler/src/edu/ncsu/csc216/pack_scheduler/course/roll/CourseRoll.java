@@ -1,7 +1,10 @@
 package edu.ncsu.csc216.pack_scheduler.course.roll;
 
+import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedAbstractList;
+import edu.ncsu.csc216.pack_scheduler.util.LinkedQueue;
+import edu.ncsu.csc216.pack_scheduler.util.Queue;
 
 /**
  * Represents the roll of students in a Course. Has a minimum and maximum Course size,
@@ -23,13 +26,26 @@ public class CourseRoll {
 	
 	/** The enrollment capacity of the Course */
 	private int enrollmentCap;
-	
+	/**
+	 * the waitlist
+	 */
+	private LinkedQueue<Student> waitlist;
+	/**
+	 * the course
+	 */
+	private Course course;
 	/**
 	 * Constructs a CourseRoll with the given enrollment capacity
 	 * @param enrollmentCap The enrollment capacity to assign this roll.
+	 * @param c the course to set
 	 * @throws IllegalArgumentException if the enrollment capacity is invalid.
 	 */
-	public CourseRoll(int enrollmentCap) {
+	public CourseRoll(int enrollmentCap, Course c) {
+		if (c == null) {
+			throw new IllegalArgumentException("Invalid course");
+		}
+		this.waitlist = new LinkedQueue<Student>(10);
+		this.course = c;
 		setEnrollmentCap(enrollmentCap);
 		roll = new LinkedAbstractList<Student>(this.enrollmentCap);
 	}
@@ -64,18 +80,42 @@ public class CourseRoll {
 	
 	/**
 	 * Enrolls the given Student into the CourseRoll and adds them to the list.
+	 * 
+	 * If the CourseRoll has reached capacity, the Student should be added to the
+	 * waitlist. That is one reason why roll.add(s) (which is really a call to
+	 * LinkedAbstractList.add()) might throw an IllegalArgumentException. If the
+	 * size of the roll is the same as enrollmentCap attempt to add the student to
+	 * waitlist.
+	 * 
+	 * If the waitlist is full, then the Student cannot enroll and an
+	 * IllegalArgumentException is thrown.
+	 * 
 	 * @param newStudent The Student to Enroll
-	 * @throws IllegalArgumentException if the Student is invalid or cannot be enrolled.
+	 * @throws IllegalArgumentException if the Student is invalid or cannot be
+	 *                                  enrolled.
 	 */
 	public void enroll(Student newStudent) {
 		if(newStudent == null || !canEnroll(newStudent)) {
 			throw new IllegalArgumentException("Student cannot be enrolled.");
 		}
-		roll.add(newStudent);
+		// this might not work
+		try {
+			roll.add(newStudent);
+		} catch (Exception e) {
+			waitlist.enqueue(newStudent);
+		}
 	}
 	
 	/**
 	 * Removes the student from the roll.
+	 * 
+	 * If the Student is in the main roll, remove the Student and add the first
+	 * eligible Student in the waitlist to the main roll.
+	 * 
+	 * If the Student is in the waitlist, remove the Student from the waitlist while
+	 * maintaining the order of the waitlist and working with the specialized data
+	 * structure methods.
+	 * 
 	 * @param newStudent The student to remove from the roll.
 	 * @throws IllegalArgumentException if the student is null or cannot be removed.
 	 */
@@ -86,6 +126,12 @@ public class CourseRoll {
 		if (roll.indexOf(newStudent) != -1) {
 			roll.remove(roll.indexOf(newStudent));
 		}
+		// adds first student in waitlist 
+		if (waitlist.size() > 0) {
+			roll.add(waitlist.dequeue());
+		}
+
+		
 	}
 	
 	/**
@@ -102,7 +148,15 @@ public class CourseRoll {
 	 * @return False if the student cannot enroll, true if the student can.
 	 */
 	public boolean canEnroll(Student newStudent) {
-		return !(roll.size() == enrollmentCap || roll.contains(newStudent));
+		for (int i = 0; i < waitlist.size(); i++) {
+			// need replace element that was removed
+			Student replace = waitlist.dequeue();
+			waitlist.enqueue(replace);
+			if (newStudent.equals(replace)) {
+				return false;
+			}
+		}
+		return !(roll.size() == enrollmentCap) && !roll.contains(newStudent);
 	}
 }
 

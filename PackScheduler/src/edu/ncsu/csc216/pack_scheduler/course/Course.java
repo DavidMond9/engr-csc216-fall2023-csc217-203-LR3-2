@@ -59,7 +59,7 @@ public class Course extends Activity implements Comparable<Course> {
 	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap, String meetingDays,
 			int startTime, int endTime) {
 	    super(title, meetingDays, startTime, endTime);
-	    roll = new CourseRoll(enrollmentCap);
+	    roll = new CourseRoll(enrollmentCap, this);
 	    setName(name);
 	    setSection(section);
 	    setCredits(credits);

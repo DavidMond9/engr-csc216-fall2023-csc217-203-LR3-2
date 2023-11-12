@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 
 /**
@@ -12,28 +13,49 @@ import edu.ncsu.csc216.pack_scheduler.user.Student;
  * @author - Sam McDonald, Joey Hughes
  */
 public class CourseRollTest {
-	
+
+	/** Course name */
+	private static final String NAME = "CSC216";
+	/** Course title */
+	private static final String TITLE = "Software Development Fundamentals";
+	/** Course section */
+	private static final String SECTION = "001";
+	/** Course credits */
+	private static final int CREDITS = 3;
+	/** Course instructor id */
+	private static final String INSTRUCTOR_ID = "sesmith5";
+	/** Course enrollment cap */
+	private static final int ENR_CAP = 100;
+	/** Course meeting days */
+	private static final String MEETING_DAYS = "MW";
+	/** Course start time */
+	private static final int START_TIME = 1330;
+	/** Course end time */
+	private static final int END_TIME = 1445;
+
 	/**
 	 * Tests the CourseRoll constructor.
 	 */
 	@Test
 	public void testCourseRoll() {
-		CourseRoll cr = new CourseRoll(250);
+		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENR_CAP, MEETING_DAYS, START_TIME, END_TIME);
+
+		CourseRoll cr = new CourseRoll(250, c);
 		assertEquals(cr.getOpenSeats(), 250);
 		assertEquals(cr.getEnrollmentCap(), 250);
 		
-		CourseRoll cr2 = new CourseRoll(10);
+		CourseRoll cr2 = new CourseRoll(10, c);
 		assertEquals(cr2.getOpenSeats(), 10);
 		assertEquals(cr2.getEnrollmentCap(), 10);
 		
-		CourseRoll cr3 = new CourseRoll(140);
+		CourseRoll cr3 = new CourseRoll(140, c);
 		assertEquals(cr3.getOpenSeats(), 140);
 		assertEquals(cr3.getEnrollmentCap(), 140);
 		
-		assertThrows(IllegalArgumentException.class, () -> {new CourseRoll(9); });
-		assertThrows(IllegalArgumentException.class, () -> {new CourseRoll(251); });
-		assertThrows(IllegalArgumentException.class, () -> {new CourseRoll(-10); });
-		assertThrows(IllegalArgumentException.class, () -> {new CourseRoll(900); });
+		assertThrows(IllegalArgumentException.class, () -> {new CourseRoll(9, c); });
+		assertThrows(IllegalArgumentException.class, () -> {new CourseRoll(251, c); });
+		assertThrows(IllegalArgumentException.class, () -> {new CourseRoll(-10, c); });
+		assertThrows(IllegalArgumentException.class, () -> {new CourseRoll(900, c); });
 	}
 	
 	/**
@@ -41,7 +63,9 @@ public class CourseRollTest {
 	 */
 	@Test
 	public void testSetEnrollmentCap() {
-		CourseRoll cr = new CourseRoll(10);
+		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENR_CAP, MEETING_DAYS, START_TIME, END_TIME);
+
+		CourseRoll cr = new CourseRoll(10, c);
 		assertEquals(cr.getOpenSeats(), 10);
 		assertEquals(cr.getEnrollmentCap(), 10);
 		cr.setEnrollmentCap(15);
@@ -70,7 +94,9 @@ public class CourseRollTest {
 	 */
 	@Test
 	public void testEnrollAndDrop() {
-		CourseRoll cr = new CourseRoll(10);
+		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENR_CAP, MEETING_DAYS, START_TIME, END_TIME);
+
+		CourseRoll cr = new CourseRoll(10, c);
 		assertEquals(cr.getOpenSeats(), 10);
 		assertEquals(cr.getEnrollmentCap(), 10);
 		
