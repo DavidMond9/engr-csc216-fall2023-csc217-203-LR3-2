@@ -203,5 +203,19 @@ public class CourseRollTest {
 		cr.drop(new Student("-1", "Hughes", "jHughes", "email@website.com", "pw"));
 
 		assertEquals(cr.getNumberOnWaitlist(), 0);
+		
+		CourseRoll cr2 = new CourseRoll(10, c);
+		for (int i = 0; i < 20; i++) {
+			cr2.enroll(new Student(i + "", "Hughes", "jHughes", "email@website.com", "pw"));
+		}
+		assertEquals(cr2.getNumberOnWaitlist(), 10);
+
+		assertFalse(cr2.canEnroll(new Student("21", "Hughes", "jHughes", "email@website.com", "pw")));
+		
+		assertEquals(cr2.getNumberOnWaitlist(), 10);
+
+		assertFalse(cr2.canEnroll(null));
+		
+		
 	}
 }

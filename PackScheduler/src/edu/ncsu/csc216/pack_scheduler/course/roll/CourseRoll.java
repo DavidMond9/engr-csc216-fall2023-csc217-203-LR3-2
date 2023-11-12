@@ -128,6 +128,7 @@ public class CourseRoll {
 		if(newStudent == null) {
 			throw new IllegalArgumentException("Student is null");
 		}
+		
 		boolean inWaitlist = false;
 		for (int i = 0; i < waitlist.size(); i++) {
 			// need replace element that was removed
@@ -143,17 +144,27 @@ public class CourseRoll {
 		}
 		if (roll.indexOf(newStudent) != -1) {
 			roll.remove(roll.indexOf(newStudent));
+			// adds first student in waitlist 
+			Student wait = null;
+			if (waitlist.size() > 0) {
+				wait = waitlist.dequeue();
+				try {
+					roll.add(wait);
+					wait.getSchedule().addCourseToSchedule(course);
+				} catch (Exception e) {
+					// do nothing;
+				}
+			}
 		}
-	
-		// adds first student in waitlist 
-		Student wait = null;
-		if (waitlist.size() > 0) {
-			wait = waitlist.dequeue();
-			try {
-				roll.add(wait);
-				wait.getSchedule().addCourseToSchedule(course);
-			} catch (Exception e) {
-				// do nothing;
+		if (inWaitlist) {
+			// remove from the waitlist 
+			for (int i = 0; i < waitlist.size(); i++) {
+				// need replace element that was removed
+				// unless it is element we want removed
+				Student replace = waitlist.dequeue();
+				if (!newStudent.equals(replace)) {
+					waitlist.enqueue(replace);
+				}
 			}
 		}
 	}
@@ -169,9 +180,12 @@ public class CourseRoll {
 	/**
 	 * Returns false if the student is already in the class or the class is full.
 	 * @param newStudent The Student to check for enrollment with.
-	 * @return False if the student cannot enroll, true if the student can.
+	 * @return False if the student cannot enroll, true if the student can.  
 	 */
 	public boolean canEnroll(Student newStudent) {
+		if (newStudent == null) {
+			return false;
+		}
 		for (int i = 0; i < waitlist.size(); i++) {
 			// need replace element that was removed
 			Student replace = waitlist.dequeue();
@@ -180,7 +194,7 @@ public class CourseRoll {
 				return false;
 			}
 		}
-		return !(roll.size() == enrollmentCap + 10) && !roll.contains(newStudent);
+		return !(roll.size() + waitlist.size() >= enrollmentCap + 10) && !roll.contains(newStudent);
 	}
 }
 
