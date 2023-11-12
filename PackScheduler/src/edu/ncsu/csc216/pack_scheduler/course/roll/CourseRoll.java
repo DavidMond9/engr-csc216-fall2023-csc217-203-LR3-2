@@ -137,10 +137,10 @@ public class CourseRoll {
 			wait = waitlist.dequeue();
 			try {
 				roll.add(wait);
+				wait.getSchedule().addCourseToSchedule(course);
 			} catch (Exception e) {
 				// do nothing;
 			}
-			wait.getSchedule().addCourseToSchedule(course);
 		}
 	}
 	

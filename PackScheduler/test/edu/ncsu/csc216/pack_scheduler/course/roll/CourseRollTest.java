@@ -167,5 +167,40 @@ public class CourseRollTest {
 		assertThrows(IllegalArgumentException.class, () -> {cr.enroll(new Student("l", "Hughes", "jHughes", "email@website.com", "pw")); });
 		cr.drop(s2);
 		assertEquals(cr.getNumberOnWaitlist(), 9);
+		cr.drop(new Student("c", "Hughes", "cHughes", "email@website.com", "pw"));
+		assertEquals(cr.getNumberOnWaitlist(), 8);
+		cr.drop(new Student("a", "Hughes", "aHughes", "email@website.com", "pw"));
+		assertEquals(cr.getNumberOnWaitlist(), 7);
+		cr.enroll(new Student("a", "Hughes", "aHughes", "email@website.com", "pw"));
+		assertEquals(cr.getNumberOnWaitlist(), 8);
+		assertTrue(cr.canEnroll(new Student("m", "Hughes", "aHughes", "email@website.com", "pw")));
+		assertEquals(cr.getNumberOnWaitlist(), 8);
+
+	}
+	/**
+	 * Tests specific failure with system test
+	 */
+	@Test
+	public void testSpecificFailureWithWaitlist() {
+		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENR_CAP, MEETING_DAYS, START_TIME, END_TIME);
+
+		CourseRoll cr = new CourseRoll(10, c);
+		
+		for (int i = 0; i < 12; i++) {
+			cr.enroll(new Student(i + "", "Hughes", "jHughes", "email@website.com", "pw"));
+		}
+		assertEquals(cr.getOpenSeats(), 0);
+		assertEquals(cr.getEnrollmentCap(), 10);
+		assertEquals(cr.getNumberOnWaitlist(), 2);
+		
+		cr.drop(new Student("10", "Hughes", "jHughes", "email@website.com", "pw"));
+		assertEquals(cr.getNumberOnWaitlist(), 1);
+
+		cr.drop(new Student("11", "Hughes", "jHughes", "email@website.com", "pw"));
+		assertEquals(cr.getNumberOnWaitlist(), 0);
+
+
+
+
 	}
 }
