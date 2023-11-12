@@ -138,7 +138,7 @@ public class CourseRoll {
 			}
 		}
 		// if not in waitlist or roll, it does not drop
-		if (roll.indexOf(newStudent) != -1 && inWaitlist) {
+		if (roll.indexOf(newStudent) == -1 && !inWaitlist) {
 			throw new IllegalArgumentException("Cannot be removed");
 		}
 		if (roll.indexOf(newStudent) != -1) {
