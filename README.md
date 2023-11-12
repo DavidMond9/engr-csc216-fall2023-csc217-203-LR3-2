@@ -8,6 +8,6 @@
 
 - **Optimize LinkedAbstractList** | **Owner:** David Mond, **Due:** 11/6, **Status:** Started
 
-- **Implement and Test Waitlist** | **Owner:** Joey Hughes, **Due:** 11/9, **Status:** Pending
+- **Implement and Test Waitlist** | **Owner:** Warren Long, **Due:** 11/9, **Status:** Finished
 
-- **System Testing and Generate Javadoc** | **Owner:** Warren Long, **Due:** 11/10, **Status:** Pending
+- **System Testing and Generate Javadoc** | **Owner:** Joey Hughes, **Due:** 11/10, **Status:** Pending
