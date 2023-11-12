@@ -53,7 +53,7 @@ public class CourseRoll {
 	 * gets the number of students on the waitlist
 	 * @return the number of students on the waitlist
 	 */
-	public int getNumberOnWaitList() {
+	public int getNumberOnWaitlist() {
 		return waitlist.size();
 	}
 	/**
@@ -162,7 +162,7 @@ public class CourseRoll {
 				return false;
 			}
 		}
-		return !(roll.size() == enrollmentCap) && !roll.contains(newStudent);
+		return !(roll.size() == enrollmentCap + 10) && !roll.contains(newStudent);
 	}
 }
 

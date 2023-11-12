@@ -124,10 +124,48 @@ public class CourseRollTest {
 		assertEquals(cr.getOpenSeats(), 0);
 		assertEquals(cr.getEnrollmentCap(), 10);
 		Student s11 = new Student("k", "Hughes", "kHughes", "email@website.com", "pw");
-		assertFalse(cr.canEnroll(s11));
-		assertThrows(IllegalArgumentException.class, () -> {cr.enroll(s11); });
+		assertTrue(cr.canEnroll(s11));
 		cr.drop(s2);
 		assertEquals(cr.getOpenSeats(), 1);
 		assertEquals(cr.getEnrollmentCap(), 10);
+	}
+	/**
+	 * Tests the new functionality 
+	 */
+	@Test
+	public void testNewFunctionality() {
+		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENR_CAP, MEETING_DAYS, START_TIME, END_TIME);
+
+		CourseRoll cr = new CourseRoll(10, c);
+		assertEquals(cr.getOpenSeats(), 10);
+		assertEquals(cr.getEnrollmentCap(), 10);
+		
+		
+		cr.enroll(new Student("a", "Hughes", "aHughes", "email@website.com", "pw"));
+		
+		Student s2 = new Student("b", "Hughes", "bHughes", "email@website.com", "pw");
+		cr.enroll(s2);
+		cr.enroll(new Student("c", "Hughes", "cHughes", "email@website.com", "pw"));
+		cr.enroll(new Student("d", "Hughes", "dHughes", "email@website.com", "pw"));
+		cr.enroll(new Student("e", "Hughes", "eHughes", "email@website.com", "pw"));
+		cr.enroll(new Student("f", "Hughes", "fHughes", "email@website.com", "pw"));
+		cr.enroll(new Student("g", "Hughes", "gHughes", "email@website.com", "pw"));
+		cr.enroll(new Student("h", "Hughes", "hHughes", "email@website.com", "pw"));
+		cr.enroll(new Student("i", "Hughes", "iHughes", "email@website.com", "pw"));
+		cr.enroll(new Student("j", "Hughes", "jHughes", "email@website.com", "pw"));
+		assertEquals(cr.getNumberOnWaitlist(), 0);
+
+		cr.enroll(new Student("k", "Hughes", "jHughes", "email@website.com", "pw"));
+
+		assertEquals(cr.getOpenSeats(), 0);
+		assertEquals(cr.getEnrollmentCap(), 10);
+		assertEquals(cr.getNumberOnWaitlist(), 1);
+		for (int i = 0; i < 9; i++) {
+			cr.enroll(new Student(i + "", "Hughes", "jHughes", "email@website.com", "pw"));
+		}
+		assertEquals(cr.getNumberOnWaitlist(), 10);
+		assertThrows(IllegalArgumentException.class, () -> {cr.enroll(new Student("l", "Hughes", "jHughes", "email@website.com", "pw"));});
+		Student s11 = new Student("k", "Hughes", "kHughes", "email@website.com", "pw");
+		
 	}
 }
