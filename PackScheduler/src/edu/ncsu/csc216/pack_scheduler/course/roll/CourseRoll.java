@@ -128,9 +128,23 @@ public class CourseRoll {
 		if(newStudent == null) {
 			throw new IllegalArgumentException("Student is null");
 		}
+		boolean inWaitlist = false;
+		for (int i = 0; i < waitlist.size(); i++) {
+			// need replace element that was removed
+			Student replace = waitlist.dequeue();
+			waitlist.enqueue(replace);
+			if (newStudent.equals(replace)) {
+				inWaitlist = true;
+			}
+		}
+		// if not in waitlist or roll, it does not drop
+		if (roll.indexOf(newStudent) != -1 && inWaitlist) {
+			throw new IllegalArgumentException("Cannot be removed");
+		}
 		if (roll.indexOf(newStudent) != -1) {
 			roll.remove(roll.indexOf(newStudent));
-		}	
+		}
+	
 		// adds first student in waitlist 
 		Student wait = null;
 		if (waitlist.size() > 0) {
