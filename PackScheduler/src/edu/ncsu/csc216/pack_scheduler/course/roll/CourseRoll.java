@@ -133,10 +133,13 @@ public class CourseRoll {
 			roll.remove(roll.indexOf(newStudent));
 		}
 		// adds first student in waitlist 
+		Student wait = null;
 		if (waitlist.size() > 0) {
-			roll.add(waitlist.dequeue());
+			wait = waitlist.dequeue();
+			roll.add(wait);
+			wait.getSchedule().addCourseToSchedule(course);
 		}
-
+		
 		
 	}
 	

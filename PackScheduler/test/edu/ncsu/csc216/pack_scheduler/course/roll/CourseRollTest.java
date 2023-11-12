@@ -165,7 +165,8 @@ public class CourseRollTest {
 		}
 		assertEquals(cr.getNumberOnWaitlist(), 10);
 		assertThrows(IllegalArgumentException.class, () -> {cr.enroll(new Student("l", "Hughes", "jHughes", "email@website.com", "pw"));});
-		Student s11 = new Student("k", "Hughes", "kHughes", "email@website.com", "pw");
-		
+		cr.drop(s2);
+		assertEquals(cr.getNumberOnWaitlist(), 9);
+
 	}
 }
