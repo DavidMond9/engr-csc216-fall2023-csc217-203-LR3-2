@@ -11,6 +11,7 @@ import java.util.NoSuchElementException;
  * LinkedAbstractList for the setCapacity() implementation.
  * 
  * @author Warren Long
+ * @param <E> the type of the linked queue
  */
 public class LinkedQueue<E> implements Queue<E> {
 	

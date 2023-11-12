@@ -4,7 +4,6 @@ import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedAbstractList;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedQueue;
-import edu.ncsu.csc216.pack_scheduler.util.Queue;
 
 /**
  * Represents the roll of students in a Course. Has a minimum and maximum Course size,
