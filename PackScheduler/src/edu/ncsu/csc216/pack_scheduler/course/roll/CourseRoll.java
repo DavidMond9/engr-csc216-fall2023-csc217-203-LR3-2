@@ -10,7 +10,7 @@ import edu.ncsu.csc216.pack_scheduler.util.LinkedQueue;
  *     a list of Student objects, and a capacity of students for this specific Course.
  *     Students can be enrolled or dropped, and the number of open seats can be accessed.
  * 
- * @author Joey Hughes, Sam McDonald, Winston Cheaz
+ * @author Joey Hughes, Sam McDonald, Winston Cheaz, Warren Long
  */
 public class CourseRoll {
 
