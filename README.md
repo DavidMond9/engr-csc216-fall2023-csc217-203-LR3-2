@@ -10,4 +10,6 @@
 
 - **Implement and Test Waitlist** | **Owner:** Warren Long, **Due:** 11/9, **Status:** Finished
 
-- **System Testing and Generate Javadoc** | **Owner:** Joey Hughes, **Due:** 11/10, **Status:** Pending
+- **System Testing** | **Owner:** Warren Long, **Due:** 11/10, **Status:** Finished
+
+- **Javadocs** | **Owner:** David Mond, **Due:** 11/10, **Status:** Pending
