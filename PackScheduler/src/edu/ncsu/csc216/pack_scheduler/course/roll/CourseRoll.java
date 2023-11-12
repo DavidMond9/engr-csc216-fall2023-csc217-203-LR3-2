@@ -131,14 +131,18 @@ public class CourseRoll {
 		}
 		if (roll.indexOf(newStudent) != -1) {
 			roll.remove(roll.indexOf(newStudent));
-			// adds first student in waitlist 
-			Student wait = null;
-			if (waitlist.size() > 0) {
-				wait = waitlist.dequeue();
-				roll.add(wait);
-				wait.getSchedule().addCourseToSchedule(course);
-			}
 		}	
+		// adds first student in waitlist 
+		Student wait = null;
+		if (waitlist.size() > 0) {
+			wait = waitlist.dequeue();
+			try {
+				roll.add(wait);
+			} catch (Exception e) {
+				// do nothing;
+			}
+			wait.getSchedule().addCourseToSchedule(course);
+		}
 	}
 	
 	/**
