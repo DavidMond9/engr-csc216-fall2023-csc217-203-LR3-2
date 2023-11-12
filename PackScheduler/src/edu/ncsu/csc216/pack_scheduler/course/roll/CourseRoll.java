@@ -49,7 +49,13 @@ public class CourseRoll {
 		setEnrollmentCap(enrollmentCap);
 		roll = new LinkedAbstractList<Student>(this.enrollmentCap);
 	}
-
+	/**
+	 * gets the number of students on the waitlist
+	 * @return the number of students on the waitlist
+	 */
+	public int getNumberOnWaitList() {
+		return waitlist.size();
+	}
 	/**
 	 * Returns the enrollment capacity of this CourseRoll.
 	 * @return The enrollment capacity.
