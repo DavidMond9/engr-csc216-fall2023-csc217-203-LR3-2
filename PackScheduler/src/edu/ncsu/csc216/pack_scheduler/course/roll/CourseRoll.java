@@ -25,14 +25,13 @@ public class CourseRoll {
 	
 	/** The enrollment capacity of the Course */
 	private int enrollmentCap;
-	/**
-	 * the waitlist
-	 */
+	
+	/** The waitlist LinkedQueue of Students. If a student tries to enroll into a full roll, they are placed in the waitlist queue. */
 	private LinkedQueue<Student> waitlist;
-	/**
-	 * the course
-	 */
+	
+	/** The course that this is a roll for. */
 	private Course course;
+	
 	/**
 	 * Constructs a CourseRoll with the given enrollment capacity
 	 * @param enrollmentCap The enrollment capacity to assign this roll.

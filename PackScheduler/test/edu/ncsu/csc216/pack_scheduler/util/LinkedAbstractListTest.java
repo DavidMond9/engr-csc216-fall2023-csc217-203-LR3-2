@@ -9,11 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
 /**
- * Test class for testing LinkedAbstarctListTest
+ * Test class for testing LinkedAbstractListTest
  * 
  * @author - Sam McDonald
  */
 public class LinkedAbstractListTest {
+	
 	/**
 	 * Tests add() method.
 	 */
@@ -29,7 +30,7 @@ public class LinkedAbstractListTest {
 				() -> list.add(5, "element"));
 		
 		list.add(0, "element");
-		assertEquals(list.size(), 1);
+		assertEquals(1, list.size());
 		assertEquals(list.get(0), "element");
 		
 		assertThrows(IllegalArgumentException.class,
@@ -37,14 +38,14 @@ public class LinkedAbstractListTest {
 		
 		list.add(0, "element0");
 		assertEquals(list.size(), 2);
-		assertEquals(list.get(0), "element0");
-		assertEquals(list.get(1), "element");
+		assertEquals("element0", list.get(0));
+		assertEquals("element", list.get(1));
 		
 		list.add(2, "element1");
 		assertEquals(list.size(), 3);
-		assertEquals(list.get(0), "element0");
-		assertEquals(list.get(1), "element");
-		assertEquals(list.get(2), "element1");
+		assertEquals("element0", list.get(0));
+		assertEquals("element", list.get(1));
+		assertEquals("element1", list.get(2));
 		
 		assertThrows(IllegalArgumentException.class,
 				() -> list.add(0, "element4"));

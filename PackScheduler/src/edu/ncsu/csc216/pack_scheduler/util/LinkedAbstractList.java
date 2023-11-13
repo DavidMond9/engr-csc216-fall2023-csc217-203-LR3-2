@@ -15,7 +15,8 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	private int size;
 	/** The capacity of the list */
 	private int capacity;
-	//private ListNode back;
+	/** A reference to the last node in the list. */
+	private ListNode back;
 	
 	/**
 	 * Creates a new LinkedAbstractList with a set capacity
@@ -24,6 +25,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	 */
 	public LinkedAbstractList(int capacity) throws IllegalArgumentException{
 		front = null;
+		back = null;
 		size = 0;
 		setCapacity(capacity);
 	}
@@ -102,18 +104,26 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	 * @throws IllegalArgumentException If the element already exists in the list. 
 	 * 	Also throws when the size is equal to capacity
 	 */
-	public void add(int index, E data) throws IndexOutOfBoundsException,
-    NullPointerException, IllegalArgumentException {
-		if (index < 0 || index > size()) {
+	public void add(int index, E data) {
+		if (index < 0 || index > size()) { // If the index is out of the bounds of the list
 		    throw new IndexOutOfBoundsException();
 		}
-		if (size == capacity) {
+		if (size == capacity) { // If the list is full
 		    throw new IllegalArgumentException();
 		}
-		if (data == null) {
+		if (data == null) { // If trying to add null data
 		    throw new NullPointerException();
 		}
 		
+		// If the list is currently empty
+		if(size == 0) {
+			front = new ListNode(data);
+			back = front;
+			size++;
+			return; // return, we shouldn't do anything else
+		}
+		
+		// Loop through the list to see if this data is duplicate
 		ListNode currentNode = front;
 		for (int x = 0; x < size(); x++) {
 			if (currentNode.data.equals(data)) {
@@ -121,35 +131,44 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 			}
 			currentNode = currentNode.next;
 		}
-		currentNode = front;
-		for (int x = 0; x < index - 1; x++) {
-			currentNode = currentNode.next;
-		}
-		if (index == 0) {
+		
+		// If adding to the back, don't traverse, just go to the back and add a new node, which becomes the new back.
+		if(index == size) {
+			ListNode newNode = new ListNode(data);
+			back.next = newNode;
+			back = newNode;
+		} else if(index == 0) { // If adding to the front, set front to a new node that points to what front used to be
 			front = new ListNode(data, front);
-		}
-		else if (index == size()) {
-			currentNode.next = new ListNode(data);
-		}
-		else {
+		} else { // If adding to the middle, set the next to be a new node that points to what used to be next
+		
+			// Traverse to the node right before the add
+			currentNode = front;
+			for (int x = 0; x < index - 1; x++) {
+				currentNode = currentNode.next;
+			}
+			
 			ListNode nextNode = currentNode.next;
 			currentNode.next = new ListNode(data, nextNode);
 		}
+		
+		// Always increment size
 		size++;
 	}
+	
+	
 	/**
 	 * Removes the node at the given index
 	 * @param index Index of the node that's going to be removed
 	 * @throws IndexOutOfBoundsException When the index of the node to be removed is less than 0 or greater than or equal to size
 	 * @return The data of the node that was removed
 	 */
-	public E remove(int index) throws IndexOutOfBoundsException{
-		E removedElement = null;
+	public E remove(int index) {
 		if (index < 0 || index >= size()) {
 			throw new IndexOutOfBoundsException();
 		}
+		E removedData = null;
 		if (index == 0) {
-			removedElement = front.data;
+			removedData = front.data;
 			front = front.next;
 		}
 		else {
@@ -157,12 +176,14 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 			for (int x = 0; x < index - 1; x++) {
 				currentNode = currentNode.next;
 			}
-			removedElement = currentNode.next.data;
+			removedData = currentNode.next.data;
 			currentNode.next = currentNode.next.next;
+			if(index == size - 1) back = currentNode;
 		}
 		size--;
-		return removedElement;
+		return removedData;
 	}
+	
 	/**
 	 * Returns the size of the LinkedAbstractList
 	 * @return The size of the LinkedAbstractList

@@ -35,7 +35,7 @@ public class LinkedStack<E> implements Stack<E> {
 	/**
 	 * Removes and returns the element from the top of the LinkedStack (the last element added).
 	 * @return The element that was removed.
-	 * @throws IllegalArgumentException if the stack is empty.
+	 * @throws EmptyStackException if the stack is empty.
 	 */
 	@Override
 	public E pop() {
