@@ -15,6 +15,8 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	private int size;
 	/** The capacity of the list */
 	private int capacity;
+	/** The back of the list. */
+	private ListNode back;
 	
 	/**
 	 * Creates a new LinkedAbstractList with a set capacity
@@ -101,37 +103,55 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	 * @throws IllegalArgumentException If the element already exists in the list. 
 	 * 	Also throws when the size is equal to capacity
 	 */
-	public void add(int index, E data) throws IndexOutOfBoundsException, 
-	NullPointerException, IllegalArgumentException{
+	public void add(int index, E data) throws IndexOutOfBoundsException,
+    NullPointerException, IllegalArgumentException {
 		if (index < 0 || index > size()) {
-			throw new IndexOutOfBoundsException();
+		    throw new IndexOutOfBoundsException();
 		}
 		if (this.size == this.capacity) {
-			throw new IllegalArgumentException();
+		    throw new IllegalArgumentException();
 		}
 		if (data == null) {
-			throw new NullPointerException();
+		    throw new NullPointerException();
 		}
+		
+		// Check if the data already exists in the list
 		ListNode currentNode = front;
-		for (int x = 0; x < size(); x++) {
-			if (currentNode.data.equals(data)) {
-				throw new IllegalArgumentException();
-			}
-			currentNode = currentNode.next;
+		while (currentNode != null) {
+		    if (currentNode.data.equals(data)) {
+		        throw new IllegalArgumentException("Duplicate data not allowed");
+		    }
+		    currentNode = currentNode.next;
 		}
+		
+		// Adding to the back of the list constant-time
+		if (index == size()) {
+		    if (size == 0) {
+		        front = new ListNode(data);
+		        back = new ListNode(data);
+		    } else {
+		        back.next = new ListNode(data);
+		        back = back.next;
+		    }
+		    size++;
+		    return;
+		}
+		
+		// Inserting at the specified index
 		currentNode = front;
 		for (int x = 0; x < index - 1; x++) {
-			currentNode = currentNode.next;
+		    currentNode = currentNode.next;
 		}
 		if (index == 0) {
-			front = new ListNode(data, front);
-		}
-		else if (index == size()) {
-			currentNode.next = new ListNode(data);
-		}
-		else {
-			ListNode nextNode = currentNode.next;
-			currentNode.next = new ListNode(data, nextNode);
+		    // Adding at the beginning
+		    front = new ListNode(data, front);
+		    if (size == 0) {
+		        back = front; // Update back if the list was empty
+		    }
+		} else {
+		    // Adding in the middle
+		    ListNode nextNode = currentNode.next;
+		    currentNode.next = new ListNode(data, nextNode);
 		}
 		size++;
 	}
