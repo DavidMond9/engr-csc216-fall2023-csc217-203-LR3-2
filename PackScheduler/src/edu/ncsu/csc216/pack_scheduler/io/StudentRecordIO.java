@@ -49,7 +49,6 @@ public class StudentRecordIO {
 	            	students.add(student); //Add to the SortedList!
 	            } //Otherwise ignore
 	        } catch (IllegalArgumentException e) {
-	        	System.out.println("Exception is " + e.getMessage());
 	            //The line is invalid b/c we couldn't create a course, skip it!
 	        }
 	    }

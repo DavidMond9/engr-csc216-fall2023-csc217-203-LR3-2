@@ -58,7 +58,6 @@ class LinkedStackTest {
 		assertEquals(2, list.size());
 		assertEquals("element 2", list.pop());
 		assertEquals(1, list.size());
-		System.out.println("OMYGOMYOMGOYMTROIURMTOIGMTRIOG THIS IS WHEN I CARE ABOUT -------------------");
 		list.push("element 4");
 		assertEquals(2, list.size());
 		assertEquals("element 4", list.pop());
