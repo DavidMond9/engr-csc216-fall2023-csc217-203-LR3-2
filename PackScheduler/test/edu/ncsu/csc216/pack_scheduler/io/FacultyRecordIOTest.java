@@ -14,7 +14,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
-import edu.ncsu.csc216.pack_scheduler.util.ArrayList;
+import edu.ncsu.csc216.pack_scheduler.util.LinkedList;
 /**
  * test the faculty record io class
  * @author Warren Long
@@ -105,7 +105,7 @@ class FacultyRecordIOTest {
 	@Test
 	void testReadFacultyRecords() {
 		try {
-			ArrayList<Faculty> s = FacultyRecordIO.readFacultyRecords(validTestFile);
+			LinkedList<Faculty> s = FacultyRecordIO.readFacultyRecords(validTestFile);
 			assertEquals(8, s.size());
 			
 			for (int i = 0; i < validFacultys.length; i++) {
@@ -121,7 +121,7 @@ class FacultyRecordIOTest {
 	 */
 	@Test
 	public void testReadInvalidFacultyRecords() {
-		ArrayList<Faculty> s;
+		LinkedList<Faculty> s;
 		try {
 			s = FacultyRecordIO.readFacultyRecords(invalidTestFile);
 			assertEquals(0, s.size());
@@ -144,7 +144,7 @@ class FacultyRecordIOTest {
 	 */
 	@Test
 	void testWriteFacultyRecords() {
-		ArrayList<Faculty> facultys = new ArrayList<Faculty>();
+		LinkedList<Faculty> facultys = new LinkedList<Faculty>();
 		facultys.add(new Faculty("Ashely", "Witt", "awitt", "mollis@Fuscealiquetmagna.net", hashPW, 2));
 		facultys.add(new Faculty("Fiona", "Meadows", "fmeadow", "pharetra.sed@et.org", hashPW, 3));
 		facultys.add(new Faculty("Brent", "Brewer", "bbrewer", "sem.semper@orcisem.co.uk", hashPW, 1));
@@ -167,7 +167,7 @@ class FacultyRecordIOTest {
 	 */
 	@Test
 	public void testWriteFacultyRecordsNoPermissions() {
-		ArrayList<Faculty> facultys = new ArrayList<Faculty>();
+		LinkedList<Faculty> facultys = new LinkedList<Faculty>();
 		facultys.add(new Faculty("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", hashPW, 2));
 
 		

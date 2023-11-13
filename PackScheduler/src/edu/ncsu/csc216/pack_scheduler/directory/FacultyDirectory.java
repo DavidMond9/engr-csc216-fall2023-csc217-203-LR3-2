@@ -9,7 +9,7 @@ import java.util.Base64;
 import edu.ncsu.csc216.pack_scheduler.io.FacultyRecordIO;
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.user.User;
-import edu.ncsu.csc216.pack_scheduler.util.ArrayList;
+import edu.ncsu.csc216.pack_scheduler.util.LinkedList;
 
 /**
  * Maintains a directory of all faculty at NC State.
@@ -19,7 +19,7 @@ import edu.ncsu.csc216.pack_scheduler.util.ArrayList;
 public class FacultyDirectory {
 	
 	/** List of facultys in the directory */
-	private ArrayList<Faculty> facultyDirectory;
+	private LinkedList<Faculty> facultyDirectory;
 	/** Hashing algorithm */
 	private static final String HASH_ALGORITHM = "SHA-256";
 	
@@ -35,7 +35,7 @@ public class FacultyDirectory {
 	 * list are list unless saved by the user.
 	 */
 	public void newFacultyDirectory() {
-		this.facultyDirectory = new ArrayList<Faculty>();
+		this.facultyDirectory = new LinkedList<Faculty>();
 	}
 	
 	/**

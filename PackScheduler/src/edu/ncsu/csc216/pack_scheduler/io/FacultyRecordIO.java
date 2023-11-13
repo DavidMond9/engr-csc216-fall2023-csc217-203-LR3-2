@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.user.User;
-import edu.ncsu.csc216.pack_scheduler.util.ArrayList;
+import edu.ncsu.csc216.pack_scheduler.util.LinkedList;
 /**
  * reads and writes faculty
  * @author Warren Long
@@ -24,9 +24,9 @@ public class FacultyRecordIO {
      * @return a list of valid Facultys
      * @throws FileNotFoundException if the file cannot be found or read
 	 */
-	public static ArrayList<Faculty> readFacultyRecords(String fileName) throws FileNotFoundException {
+	public static LinkedList<Faculty> readFacultyRecords(String fileName) throws FileNotFoundException {
 		Scanner fileReader = new Scanner(new FileInputStream(fileName));  //Create a file scanner to read the file
-		ArrayList<Faculty> facultys = new ArrayList<Faculty>(); //Create an empty array of Faculty objects
+		LinkedList<Faculty> facultys = new LinkedList<Faculty>(); //Create an empty array of Faculty objects
 	    while (fileReader.hasNextLine()) { //While we have more lines in the file
 	        try { //Attempt to do the following
 	            //Read the line, process it in readFaculty, and get the object
@@ -65,7 +65,7 @@ public class FacultyRecordIO {
 	 * @param facultyDirectory A list of Facultys
 	 * @throws IOException if the file cannot be found/read
 	 */
-	public static void writeFacultyRecords(String fileName, ArrayList<Faculty> facultyDirectory) throws IOException {
+	public static void writeFacultyRecords(String fileName, LinkedList<Faculty> facultyDirectory) throws IOException {
     	PrintStream fileWriter = new PrintStream(new File(fileName));
 
     	for (int i = 0; i < facultyDirectory.size(); i++) {
