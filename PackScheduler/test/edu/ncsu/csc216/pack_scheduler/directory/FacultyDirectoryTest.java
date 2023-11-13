@@ -66,7 +66,7 @@ class FacultyDirectoryTest {
 		//are removed after calling newFacultyDirectory().
 		FacultyDirectory sd = new FacultyDirectory();
 		
-		sd.loadFacultysFromFile(validTestFile);
+		sd.loadFacultyFromFile(validTestFile);
 		assertEquals(8, sd.getFacultyDirectory().length);
 		
 		sd.newFacultyDirectory();
@@ -81,14 +81,14 @@ class FacultyDirectoryTest {
 		FacultyDirectory sd = new FacultyDirectory();
 				
 		//Test valid file
-		sd.loadFacultysFromFile(validTestFile);
+		sd.loadFacultyFromFile(validTestFile);
 		assertEquals(8, sd.getFacultyDirectory().length);
 		
 		//Test invalid file
 		FacultyDirectory sd2 = new FacultyDirectory();
 		String invalidPath = "Invalid file path";
 		Exception exception = assertThrows(IllegalArgumentException.class,
-				() -> sd2.loadFacultysFromFile(invalidPath));
+				() -> sd2.loadFacultyFromFile(invalidPath));
 		assertEquals("Unable to read file " + invalidPath, exception.getMessage(), "Incorrect exception thrown with invalid input - " + invalidPath);
 	}
 
@@ -132,7 +132,7 @@ class FacultyDirectoryTest {
 		FacultyDirectory sd = new FacultyDirectory();
 				
 		//Add facultys and remove
-		sd.loadFacultysFromFile(validTestFile);
+		sd.loadFacultyFromFile(validTestFile);
 		assertEquals(8, sd.getFacultyDirectory().length);
 		assertTrue(sd.removeFaculty("fmeadow"));
 		String [][] facultyDirectory = sd.getFacultyDirectory();

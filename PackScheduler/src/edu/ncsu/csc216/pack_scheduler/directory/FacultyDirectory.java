@@ -44,7 +44,7 @@ public class FacultyDirectory {
 	 * file cannot be found.
 	 * @param fileName file containing list of facultys
 	 */
-	public void loadFacultysFromFile(String fileName) {
+	public void loadFacultyFromFile(String fileName) {
 		try {
 			facultyDirectory = FacultyRecordIO.readFacultyRecords(fileName);
 		} catch (FileNotFoundException e) {
