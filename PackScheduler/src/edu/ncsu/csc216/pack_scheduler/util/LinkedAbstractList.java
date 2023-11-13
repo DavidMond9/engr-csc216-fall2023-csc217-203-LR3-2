@@ -108,13 +108,14 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		if (index < 0 || index > size()) {
 		    throw new IndexOutOfBoundsException();
 		}
-		if (this.size == this.capacity) {
+		if (size == capacity) {
 		    throw new IllegalArgumentException();
 		}
 		if (data == null) {
 		    throw new NullPointerException();
 		}
 		
+
 		// Check if the data already exists in the list
 		ListNode currentNode = front;
 		for (int x = 0; x < size(); x++) {
@@ -144,9 +145,9 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		if (index == 0) {
 		    // Adding at the beginning
 		    front = new ListNode(data, front);
-		}
-		else if(index == size()) {
-			currentNode.next = new ListNode(data);
+		    if(size == 0) {
+		    	back = front;
+		    }
 		}
 		else {
 			ListNode nextNode = currentNode.next;
@@ -171,9 +172,9 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	    if (index == 0) {
 	        removedElement = front.data;
 	        front = front.next;
-	        /*if (size == 1) {
+	        if (size == 1) {
 	            back = null;
-	        }*/
+	        }
 	    } else {
 	        ListNode currentNode = front;
 	        for (int x = 0; x < index - 1; x++) {
