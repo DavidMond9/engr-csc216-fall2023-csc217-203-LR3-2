@@ -162,25 +162,35 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	 * @throws IndexOutOfBoundsException When the index of the node to be removed is less than 0 or greater than or equal to size
 	 * @return The data of the node that was removed
 	 */
-	public E remove(int index) throws IndexOutOfBoundsException{
-		E removedElement = null;
-		if (index < 0 || index >= size()) {
-			throw new IndexOutOfBoundsException();
-		}
-		if (index == 0) {
-			removedElement = front.data;
-			front = front.next;
-		}
-		else {
-			ListNode currentNode = front;
-			for (int x = 0; x < index - 1; x++) {
-				currentNode = currentNode.next;
-			}
-			removedElement = currentNode.next.data;
-			currentNode.next = currentNode.next.next;
-		}
-		size--;
-		return removedElement;
+	public E remove(int index) throws IndexOutOfBoundsException {
+	    E removedElement = null;
+
+	    if (index < 0 || index >= size()) {
+	        throw new IndexOutOfBoundsException();
+	    }
+
+	    if (index == 0) {
+	        removedElement = front.data;
+	        front = front.next;
+	        if (size == 1) {
+	            back = null;
+	        }
+	    } else {
+	        ListNode currentNode = front;
+	        for (int x = 0; x < index - 1; x++) {
+	            currentNode = currentNode.next;
+	        }
+
+	        removedElement = currentNode.next.data;
+	        currentNode.next = currentNode.next.next;
+
+	        if (index == size - 1) {
+	            back = currentNode;
+	        }
+	    }
+
+	    size--;
+	    return removedElement;
 	}
 	/**
 	 * Returns the size of the LinkedAbstractList
