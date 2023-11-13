@@ -59,6 +59,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 	 * Replaces the element at the given index to the given data.
 	 * @param index The index to replace the data for.
 	 * @param element The element to replace with.
+	 * @throws IllegalArgumentException if the element is a duplicate element.
 	 */
 	@Override
 	public E set(int index, E element) {
@@ -72,6 +73,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 	 * Returns a new ListIterator.
 	 * @param index integer to represent the index.
 	 * @return returns a new ListIterator.
+	 * @throws IndexOutOfBoundsException if the index is out of bounds for the list.
 	 */
 	@Override
 	public ListIterator<E> listIterator(int index) {
@@ -139,6 +141,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		/**
 		 * Creates a new LinkedListIterator.
 		 * @param index Index where the LinkedListIterator is.
+		 * @throws IndexOutOfBoundsException if the given index is out of bounds for the list.
 		 */
 		public LinkedListIterator(int index) {
 			if(index > size || index < 0) {
@@ -169,6 +172,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		/**
 		 * Returns the data in the next ListNode.
 		 * @return Returns E for the data in the next ListNode.
+		 * @throws NoSuchElementException if there is no next element.
 		 */
 		@Override
 		public E next() {
@@ -183,6 +187,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 			this.nextIndex++;
 			return nextData;
 		}
+		
 		/**
 		 * Returns true if previous node, returns false if not.
 		 * @return Returns a boolean if previous or not.
@@ -194,15 +199,15 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 			}
 			return false;
 		}
+		
 		/**
 		 * Returns the data in the previous ListNode.
 		 * @return Returns E for the data in the previous ListNode.
+		 * @throws NoSuchElementException if there is no previous element.
 		 */
 		@Override
 		public E previous() {
-			if(!hasPrevious()) {
-				throw new NoSuchElementException("No such element.");
-			}
+			if(!hasPrevious()) throw new NoSuchElementException("No such element.");
 			E prevData = previous.data;
 			this.lastRetrieved = previous;
 			this.next = previous;
@@ -219,6 +224,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		public int nextIndex() {
 			return this.nextIndex;
 		}
+		
 		/**
 		 * Returns the previousIndex field.
 		 * @return Returns an integer for the previousIndex.
@@ -228,7 +234,10 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 			return this.previousIndex;
 		}
 
-		
+		/**
+		 * Removes the element that was last retrieved from the list using next() or previous()
+		 * @throws IllegalStateException if there is no last retrieved element.
+		 */
 		@Override
 		public void remove() {
 			if(lastRetrieved == null) throw new IllegalStateException("No Last Retrieved element");

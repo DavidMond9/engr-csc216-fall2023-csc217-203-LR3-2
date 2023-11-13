@@ -2,6 +2,8 @@ package edu.ncsu.csc216.pack_scheduler.util;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ListIterator;
+
 import org.junit.jupiter.api.Test;
 
 /**
@@ -9,6 +11,7 @@ import org.junit.jupiter.api.Test;
  * @author Joey Hughes, David Mond
  */
 class LinkedListTest {
+	
 	/**
 	 * Tests the construction of an LinkedList
 	 */
@@ -133,6 +136,19 @@ class LinkedListTest {
 		assertDoesNotThrow(() -> stringList.add(1, "Whenever"));
 		assertEquals(intList.get(0), 15);
 		assertEquals(intList.get(1), 20);
+		
+		// Test the iterator for the linked list using the int list
+		ListIterator<Integer> intIterator = intList.listIterator(0);
+		assertEquals(-1, intIterator.previousIndex());
+		assertEquals(0, intIterator.nextIndex());
+		assertEquals(15, intIterator.next());
+		assertTrue(intIterator.hasPrevious());
+		assertEquals(0, intIterator.previousIndex());
+		assertEquals(1, intIterator.nextIndex());
+		assertEquals(15, intIterator.previous());
+		
+		
+		
 		assertEquals(stringList.get(0), "Whatever");
 		assertEquals(stringList.get(1), "Whenever");
 		assertThrows(IndexOutOfBoundsException.class, 
