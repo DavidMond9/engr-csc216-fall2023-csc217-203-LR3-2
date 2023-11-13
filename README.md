@@ -13,3 +13,17 @@
 - **System Testing** | **Owner:** Warren Long, **Due:** 11/10, **Status:** Finished
 
 - **Javadocs** | **Owner:** David Mond, **Due:** 11/10, **Status:** Finished
+
+## Lab 10
+
+- **Implement Custom LinkedList** | **Owner:** Joey Hughes, **Due:** 11/13, **Status:** Started
+
+- **Implement and Test Faculty** | **Owner:** Warren Long, **Due:** 11/13, **Status:** Started
+
+- **Implement and Test FacultyRecordIO** | **Owner:** Warren Long, **Due:** 11/14, **Status:** Pending
+
+- **Implement and Test FacultyDirectory** | **Owner:** Warren Long, **Due:** 11/14, **Status:** Pending
+
+- **Update RegistrationManager** | **Owner:** David Mond, **Due:** 11/16, **Status:** Pending
+
+- **Generate Javadoc and Double Check** | **Owner:** David Mond, **Due:** 11/17, **Status:** Pending
