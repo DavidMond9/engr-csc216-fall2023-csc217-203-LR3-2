@@ -6,10 +6,10 @@
 
 - **Implement and Test Queues** | **Owner:** Warren Long, **Due:** 11/6, **Status:** Finished
 
-- **Optimize LinkedAbstractList** | **Owner:** David Mond, **Due:** 11/6, **Status:** Started
+- **Optimize LinkedAbstractList** | **Owner:** David Mond, **Due:** 11/6, **Status:** Finished
 
 - **Implement and Test Waitlist** | **Owner:** Warren Long, **Due:** 11/9, **Status:** Finished
 
 - **System Testing** | **Owner:** Warren Long, **Due:** 11/10, **Status:** Finished
 
-- **Javadocs** | **Owner:** David Mond, **Due:** 11/10, **Status:** Pending
+- **Javadocs** | **Owner:** David Mond, **Due:** 11/10, **Status:** Finished
