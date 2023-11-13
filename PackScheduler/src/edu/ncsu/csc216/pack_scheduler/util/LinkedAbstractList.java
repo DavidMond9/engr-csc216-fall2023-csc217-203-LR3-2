@@ -123,7 +123,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 			}
 			currentNode = currentNode.next;
 		}
-		/*// Adding to the back of the list constant-time
+		// Adding to the back of the list constant-time
 		if (index == size()) {
 		    if (size == 0) {
 		        front = new ListNode(data);
@@ -134,7 +134,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		    }
 		    size++;
 		    return;
-		}*/
+		}
 		
 		// Inserting at the specified index
 		currentNode = front;
@@ -183,9 +183,9 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	        removedElement = currentNode.next.data;
 	        currentNode.next = currentNode.next.next;
 
-	        /*if (index == size - 1) {
+	        if (index == size - 1) {
 	            back = currentNode;
-	        }*/
+	        }
 	    }
 
 	    size--;
