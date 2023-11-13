@@ -11,13 +11,18 @@ import java.util.Properties;
 import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.course.roll.CourseRoll;
+import edu.ncsu.csc216.pack_scheduler.directory.FacultyDirectory;
 import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
+import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.User;
 import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
 
 /**
  * Singleton class that manages a Course catalog and Student directory. Contains a registrar User that can
+ * use the manager
+ * @author Warren Long
+ * 
  */
 public class RegistrationManager {
 	/**
@@ -40,7 +45,10 @@ public class RegistrationManager {
 	 * Holds the actual currentUser, either the registrar or a Student.  
 	 */
 	private User currentUser;
-	   
+	/**
+	 * the directory of the faculty
+	 */
+	private FacultyDirectory facultyDirectory;
 	/** Hashing algorithm */
 	private static final String HASH_ALGORITHM = "SHA-256";
 	
@@ -55,10 +63,18 @@ public class RegistrationManager {
 	private RegistrationManager() {
 		courseCatalog = new CourseCatalog();
 		studentDirectory = new StudentDirectory();
+		facultyDirectory = new FacultyDirectory();
 		createRegistrar();
 		logout();
+		
 	}
-	
+	/**
+	 * gets the faculty directory
+	 * @return the faculty directory
+	 */
+	public FacultyDirectory getFacultyDirectory() {
+		return facultyDirectory;
+	}
 	/**
 	 * Creates a new instance of the Registrar inner class with information imported from the local registrar.properties file.
 	 * @throws IllegalArgumentException if the file cannot be found or if it's details are invalid.
@@ -132,10 +148,20 @@ public class RegistrationManager {
 			return false;
 		}
 		Student s = studentDirectory.getStudentById(id);
+		Faculty f = facultyDirectory.getFacultyById(id);
 		String localHashPW = hashPW(password);
 		if (s != null) {
 			if (s.getPassword().equals(localHashPW)) {
 				currentUser = s;
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		if (f != null) {
+			if (f.getPassword().equals(localHashPW)) {
+				currentUser = f;
 				return true;
 			}
 			else {
