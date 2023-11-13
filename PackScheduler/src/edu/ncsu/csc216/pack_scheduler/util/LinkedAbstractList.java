@@ -15,8 +15,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	private int size;
 	/** The capacity of the list */
 	private int capacity;
-	/** The back of the list. */
-	private ListNode back;
+	//private ListNode back;
 	
 	/**
 	 * Creates a new LinkedAbstractList with a set capacity
@@ -115,8 +114,6 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		    throw new NullPointerException();
 		}
 		
-
-		// Check if the data already exists in the list
 		ListNode currentNode = front;
 		for (int x = 0; x < size(); x++) {
 			if (currentNode.data.equals(data)) {
@@ -124,73 +121,47 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 			}
 			currentNode = currentNode.next;
 		}
-		// Adding to the back of the list constant-time
-		if (index == size()) {
-		      back.next = new ListNode(data, null);
-		      back = new ListNode(data, null); 
-		    }
-		else if (index == 0) {
-			if(front == null) {
-				front = new ListNode(data, null);
-				back = front;
-			}
-			else {
-				ListNode newFront = front;
-				front = new ListNode(data, newFront);
-			}
-		    // Adding at the beginning
-		    
+		currentNode = front;
+		for (int x = 0; x < index - 1; x++) {
+			currentNode = currentNode.next;
+		}
+		if (index == 0) {
+			front = new ListNode(data, front);
+		}
+		else if (index == size()) {
+			currentNode.next = new ListNode(data);
 		}
 		else {
-			ListNode curr = front;
-			for(int i = 0; i < index - 1; i++) {
-				curr = curr.next;
-			}
-		    curr.next = new ListNode(data, curr.next);
+			ListNode nextNode = currentNode.next;
+			currentNode.next = new ListNode(data, nextNode);
 		}
 		size++;
 	}
-	
 	/**
 	 * Removes the node at the given index
 	 * @param index Index of the node that's going to be removed
 	 * @throws IndexOutOfBoundsException When the index of the node to be removed is less than 0 or greater than or equal to size
 	 * @return The data of the node that was removed
 	 */
-	public E remove(int index) throws IndexOutOfBoundsException {
-	    ListNode removedElement = null;
-	    ListNode currentNode = null;
-
-	    if (index < 0 || index >= size()) {
-	        throw new IndexOutOfBoundsException();
-	    }
-
-	    if (index == 0) {
-	        removedElement = front;
-	        front = front.next;
-	        
-	    } 
-	    else if(size - 1 == index) {
-	        currentNode = front;
-	        for (int x = 0; x < index - 1; x++) {
-	            currentNode = currentNode.next;
-	        }
-	        removedElement = back;
-	        back = currentNode;
-	        back.next = null;
-	    }
-	    else {
-	    	currentNode = front;
-	    	for(int i = 0; i < index - 1; i++) {
-	    		currentNode = currentNode.next;
-	    	}
-	    	removedElement = currentNode.next;
-	    	currentNode.next = currentNode.next.next;
-	    	removedElement.next = null;
-	    }
-
-	    size--;
-	    return removedElement.data;
+	public E remove(int index) throws IndexOutOfBoundsException{
+		E removedElement = null;
+		if (index < 0 || index >= size()) {
+			throw new IndexOutOfBoundsException();
+		}
+		if (index == 0) {
+			removedElement = front.data;
+			front = front.next;
+		}
+		else {
+			ListNode currentNode = front;
+			for (int x = 0; x < index - 1; x++) {
+				currentNode = currentNode.next;
+			}
+			removedElement = currentNode.next.data;
+			currentNode.next = currentNode.next.next;
+		}
+		size--;
+		return removedElement;
 	}
 	/**
 	 * Returns the size of the LinkedAbstractList
