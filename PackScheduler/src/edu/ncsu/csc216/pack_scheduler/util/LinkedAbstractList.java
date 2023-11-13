@@ -117,14 +117,13 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		
 		// Check if the data already exists in the list
 		ListNode currentNode = front;
-		while (currentNode != null) {
-		    if (currentNode.data.equals(data)) {
-		        throw new IllegalArgumentException("Duplicate data not allowed");
-		    }
-		    currentNode = currentNode.next;
+		for (int x = 0; x < size(); x++) {
+			if (currentNode.data.equals(data)) {
+				throw new IllegalArgumentException();
+			}
+			currentNode = currentNode.next;
 		}
-		
-		// Adding to the back of the list constant-time
+		/*// Adding to the back of the list constant-time
 		if (index == size()) {
 		    if (size == 0) {
 		        front = new ListNode(data);
@@ -135,7 +134,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		    }
 		    size++;
 		    return;
-		}
+		}*/
 		
 		// Inserting at the specified index
 		currentNode = front;
@@ -145,12 +144,12 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		if (index == 0) {
 		    // Adding at the beginning
 		    front = new ListNode(data, front);
-		    if (size == 0) {
-		        back = front; // Update back if the list was empty
-		    }
-		} else {
-		    // Adding in the middle
-		    ListNode nextNode = currentNode.next;
+		}
+		else if(index == size()) {
+			currentNode.next = new ListNode(data);
+		}
+		else {
+			ListNode nextNode = currentNode.next;
 		    currentNode.next = new ListNode(data, nextNode);
 		}
 		size++;
@@ -172,9 +171,9 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	    if (index == 0) {
 	        removedElement = front.data;
 	        front = front.next;
-	        if (size == 1) {
+	        /*if (size == 1) {
 	            back = null;
-	        }
+	        }*/
 	    } else {
 	        ListNode currentNode = front;
 	        for (int x = 0; x < index - 1; x++) {
@@ -184,9 +183,9 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	        removedElement = currentNode.next.data;
 	        currentNode.next = currentNode.next.next;
 
-	        if (index == size - 1) {
+	        /*if (index == size - 1) {
 	            back = currentNode;
-	        }
+	        }*/
 	    }
 
 	    size--;
