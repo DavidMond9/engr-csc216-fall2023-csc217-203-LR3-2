@@ -15,7 +15,10 @@ import org.junit.jupiter.api.Test;
 
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.util.ArrayList;
-
+/**
+ * test the faculty record io class
+ * @author Warren Long
+ */
 class FacultyRecordIOTest {
 
 	/** Valid faculty records */
