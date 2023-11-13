@@ -164,10 +164,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		 */
 		@Override
 		public boolean hasNext() {
-			if(next.data != null) {
-				return true;
-			}
-			return false;
+			return next.data != null;
 		}
 		/**
 		 * Returns the data in the next ListNode.
@@ -194,10 +191,8 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		 */
 		@Override
 		public boolean hasPrevious() {
-			if(previous.data != null) {
-				return true;
-			}
-			return false;
+			return previous.data != null;
+				
 		}
 		
 		/**
