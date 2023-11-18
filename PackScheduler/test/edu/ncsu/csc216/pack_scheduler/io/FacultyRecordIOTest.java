@@ -140,7 +140,7 @@ class FacultyRecordIOTest {
 	}
 	
 	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.io.FacultyRecordIO#writeFacultyRecords(java.lang.String, )}.
+	 * Test method for edu.ncsu.csc216.pack_scheduler.io.FacultyRecordIO#writeFacultyRecords(java.lang.String, ).
 	 */
 	@Test
 	void testWriteFacultyRecords() {
@@ -163,7 +163,7 @@ class FacultyRecordIOTest {
 	}
 	
 	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.io.FacultyRecordIO#writeFacultyRecords(java.lang.String, )}.
+	 * Test method for edu.ncsu.csc216.pack_scheduler.io.FacultyRecordIO#writeFacultyRecords(java.lang.String, ).
 	 */
 	@Test
 	public void testWriteFacultyRecordsNoPermissions() {

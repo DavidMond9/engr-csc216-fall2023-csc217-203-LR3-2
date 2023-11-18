@@ -15,6 +15,7 @@ import java.util.Scanner;
 
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
 import edu.ncsu.csc217.collections.list.SortedList;
 
 /**
@@ -62,6 +63,7 @@ public class CourseRecordIOTest {
 
 	/**
 	 * Resets course_records.txt for use in other tests.
+	 * @throws Exception if the system cannot find the path specified
 	 */
 	@Before
 	public void setUp() throws Exception {

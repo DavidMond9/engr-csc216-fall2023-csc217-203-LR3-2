@@ -3,7 +3,10 @@ package edu.ncsu.csc216.pack_scheduler.user;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
-
+/**
+ * Tests the student class
+ * @author Warren Long
+ */
 class StudentTest {
 	
 	/**

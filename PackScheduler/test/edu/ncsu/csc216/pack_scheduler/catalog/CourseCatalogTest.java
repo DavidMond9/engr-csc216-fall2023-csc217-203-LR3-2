@@ -46,6 +46,7 @@ public class CourseCatalogTest {
 	
 	/**
 	 * Resets course_records.txt for use in other tests.
+	 * @throws Exception if it cannot get the path
 	 */
 	@Before
 	public void setUp() throws Exception {

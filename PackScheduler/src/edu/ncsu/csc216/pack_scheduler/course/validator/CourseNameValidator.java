@@ -71,10 +71,15 @@ public class CourseNameValidator {
 			//Intentionally left empty
 		}
 		
-		/** Method for what to do on a letter transition. */
+		/** Method for what to do on a letter transition. 
+		 * 
+		 * @throws InvalidTransitionException if the transition is invalid
+		 */
 		public abstract void onLetter() throws InvalidTransitionException;
 		
-		/** Method for what to do on a digit transition. */
+		/** Method for what to do on a digit transition. 
+		 * @throws InvalidTransitionException if the transition is invalid
+		 */
 		public abstract void onDigit() throws InvalidTransitionException;
 		
 		/**

@@ -41,8 +41,9 @@ class ArrayQueueTest {
 		q.enqueue(1);
 		assertEquals(1, q.dequeue());
 	}
-	/*
+	/**
 	 * tests inserting multiple elements
+	 * 
 	 */
 	@Test
 	void testInsertMultipleElements() {

@@ -12,7 +12,10 @@ import java.util.Scanner;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
-
+/**
+ * Tests the faculty directory
+ * @author Warren Long
+ */
 class FacultyDirectoryTest {
 	
 	/** Valid course records */

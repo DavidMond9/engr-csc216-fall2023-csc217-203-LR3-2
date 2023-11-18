@@ -148,7 +148,7 @@ class StudentRecordIOTest {
 	}
 	
 	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.io.StudentRecordIO#writeStudentRecords(java.lang.String, )}.
+	 * Test method for  edu.ncsu.csc216.pack_scheduler.io.StudentRecordIO#writeStudentRecords(java.lang.String, ).
 	 */
 	@Test
 	void testWriteStudentRecords() {
@@ -172,7 +172,7 @@ class StudentRecordIOTest {
 	}
 	
 	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.io.StudentRecordIO#writeStudentRecords(java.lang.String, )}.
+	 * Test method for  edu.ncsu.csc216.pack_scheduler.io.StudentRecordIO#writeStudentRecords(java.lang.String, ).
 	 */
 	@Test
 	public void testWriteStudentRecordsNoPermissions() {

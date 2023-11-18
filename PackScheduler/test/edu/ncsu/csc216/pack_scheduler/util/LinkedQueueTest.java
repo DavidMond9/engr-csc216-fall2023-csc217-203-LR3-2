@@ -21,7 +21,7 @@ class LinkedQueueTest {
 		q.enqueue(1);
 		assertEquals(1, q.dequeue());
 	}
-	/*
+	/**
 	 * tests inserting multiple elements
 	 */
 	@Test
