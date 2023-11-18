@@ -11,7 +11,7 @@ import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.user.User;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedList;
 /**
- * reads and writes faculty
+ * Class with static methods for reading and writing faculty records to files.
  * @author Warren Long
  */
 public class FacultyRecordIO {

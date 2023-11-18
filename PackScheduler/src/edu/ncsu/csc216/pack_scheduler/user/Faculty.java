@@ -2,7 +2,7 @@ package edu.ncsu.csc216.pack_scheduler.user;
 
 /**
  * The Faculty class represents an individual faculty record. The Faculty class
- * is a “plain old java object” (POJO) consisting mostly of getters and setters.
+ * is a "plain old java object" (POJO) consisting mostly of getters and setters.
  * Faculty extends User and its implementation is similar to the implementation
  * of Student. The main difference is that Faculty objects have a number of
  * courses they can teach in a given semester (between 1 and 3 inclusive) rather
@@ -89,9 +89,9 @@ public class Faculty extends User implements Comparable<Faculty> {
 	
 	
 	/**
-	 * Converts Student to a string, with variables in order of:
+	 * Converts Faculty to a string, with variables in order of:
 	 * firstName,lastName,id,email,hashedPassword,maxCredits
-	 * @return String of all student variables.
+	 * @return String of all faculty variables.
 	 */
 	@Override
 	public String toString() {

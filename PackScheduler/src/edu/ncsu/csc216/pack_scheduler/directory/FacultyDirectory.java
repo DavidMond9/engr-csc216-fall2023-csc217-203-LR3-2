@@ -20,6 +20,7 @@ public class FacultyDirectory {
 	
 	/** List of facultys in the directory */
 	private LinkedList<Faculty> facultyDirectory;
+	
 	/** Hashing algorithm */
 	private static final String HASH_ALGORITHM = "SHA-256";
 	

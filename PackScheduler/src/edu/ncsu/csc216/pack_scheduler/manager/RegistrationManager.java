@@ -21,34 +21,41 @@ import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
 /**
  * Singleton class that manages a Course catalog and Student directory. Contains a registrar User that can
  * use the manager
- * @author Warren Long
  * 
+ * @author Warren Long
  */
 public class RegistrationManager {
+	
 	/**
 	 * A single instance of RegistrationManager
 	 */
 	private static RegistrationManager instance;
+	
 	/**
 	 * Catalog of the available courses
 	 */
 	private CourseCatalog courseCatalog;
+	
 	/**
 	 * A directory of the students
 	 */
 	private StudentDirectory studentDirectory;
+	
 	/**
 	 * Holds the preset registrar
 	 */
 	private User registrar;
+	
 	/**
 	 * Holds the actual currentUser, either the registrar or a Student.  
 	 */
 	private User currentUser;
+	
 	/**
-	 * the directory of the faculty
+	 * The directory of the faculty
 	 */
 	private FacultyDirectory facultyDirectory;
+	
 	/** Hashing algorithm */
 	private static final String HASH_ALGORITHM = "SHA-256";
 	
@@ -68,13 +75,7 @@ public class RegistrationManager {
 		logout();
 		
 	}
-	/**
-	 * gets the faculty directory
-	 * @return the faculty directory
-	 */
-	public FacultyDirectory getFacultyDirectory() {
-		return facultyDirectory;
-	}
+	
 	/**
 	 * Creates a new instance of the Registrar inner class with information imported from the local registrar.properties file.
 	 * @throws IllegalArgumentException if the file cannot be found or if it's details are invalid.
@@ -128,6 +129,7 @@ public class RegistrationManager {
 	public CourseCatalog getCourseCatalog() {
 		return courseCatalog;
 	}
+	
 	/**
 	 * Returns the student directory.
 	 * @return The studentDirectory.
@@ -136,6 +138,14 @@ public class RegistrationManager {
 		return studentDirectory;
 	}
 	
+	/**
+	 * gets the faculty directory
+	 * @return the faculty directory
+	 */
+	public FacultyDirectory getFacultyDirectory() {
+		return facultyDirectory;
+	}
+
 	/**
 	 * Allows the user to login. Sets the currentUser as the type of user the ID/Pass are associated with.
 	 * @param id id of the User.
@@ -276,6 +286,7 @@ public class RegistrationManager {
 	 * @author CSC 217 team.
 	 */
 	private static class Registrar extends User {
+		
 		/**
 		 * Creates a Registrar, a type of User. 
 		 * @param firstName First name of the Registrar.
