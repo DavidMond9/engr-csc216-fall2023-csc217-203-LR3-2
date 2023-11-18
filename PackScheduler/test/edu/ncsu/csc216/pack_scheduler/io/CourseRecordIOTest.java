@@ -62,6 +62,7 @@ public class CourseRecordIOTest {
 
 	/**
 	 * Resets course_records.txt for use in other tests.
+	 * @throws Exception if the system cannot find the path specified
 	 */
 	@Before
 	public void setUp() throws Exception {
