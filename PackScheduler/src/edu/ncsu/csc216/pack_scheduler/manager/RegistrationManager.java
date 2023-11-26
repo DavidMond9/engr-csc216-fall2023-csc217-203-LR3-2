@@ -219,6 +219,7 @@ public class RegistrationManager {
 	 * Returns true if the logged in student can enroll in the given course.
 	 * @param c Course to enroll in
 	 * @return true if enrolled
+	 * @throws IllegalArgumentException if the user is not a student
 	 */
 	public boolean enrollStudentInCourse(Course c) {
 	    if (!(currentUser instanceof Student)) {
@@ -245,6 +246,7 @@ public class RegistrationManager {
 	 * Returns true if the logged in student can drop the given course.
 	 * @param c Course to drop
 	 * @return true if dropped
+	 * @throws IllegalArgumentException if the user is not a student
 	 */
 	public boolean dropStudentFromCourse(Course c) {
 	    if (!(currentUser instanceof Student)) {
@@ -262,6 +264,7 @@ public class RegistrationManager {
 	/**
 	 * Resets the logged in student's schedule by dropping them
 	 * from every course and then resetting the schedule.
+	 * @throws IllegalArgumentException if the user is not a student
 	 */
 	public void resetSchedule() {
 	    if (!(currentUser instanceof Student)) {

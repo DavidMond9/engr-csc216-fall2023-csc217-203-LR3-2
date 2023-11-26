@@ -44,6 +44,7 @@ public class StudentDirectory {
 	 * from the given file.  Throws an IllegalArgumentException if the 
 	 * file cannot be found.
 	 * @param fileName file containing list of students
+	 * @throws IllegalArgumentException if it is unable to read the file
 	 */
 	public void loadStudentsFromFile(String fileName) {
 		try {
@@ -109,6 +110,7 @@ public class StudentDirectory {
 	 * 
 	 * @param toHash the String to hash 
 	 * @return the encoded digest of the hash algorithm in base64
+	 * @throws IllegalArgumentException if it cannot hash the password
 	 */
 	private static String hashString(String toHash) {
 		try {

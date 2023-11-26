@@ -114,6 +114,7 @@ public class ArrayList<E> extends AbstractList<E> {
 	 * Returns the element at index.
 	 * @param index index to get element from
 	 * @return E element at index
+	 * @throws IndexOutOfBoundsException if the index is less than 0 or greater than the size of the list
 	 */
 	@Override
 	public E get(int index) {

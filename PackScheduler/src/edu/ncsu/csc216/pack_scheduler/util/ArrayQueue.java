@@ -96,6 +96,7 @@ public class ArrayQueue<E> implements Queue<E> {
 	 * is thrown
 	 * 
 	 * @param capacity the capacity to set
+	 * @throws IllegalArgumentException if the capacity is set to be less than the size or less than 0
 	 */
 	@Override
 	public void setCapacity(int capacity) {

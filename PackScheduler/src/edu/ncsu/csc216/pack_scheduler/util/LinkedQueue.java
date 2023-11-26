@@ -90,6 +90,8 @@ public class LinkedQueue<E> implements Queue<E> {
 	 * is thrown
 	 * 
 	 * @param capacity the capacity to set
+	 * @throws IllegalArgumentException if setCapacity throws an exception
+	 * (if the capacity is less than 0 or less than the current size)
 	 */
 	@Override
 	public void setCapacity(int capacity) {

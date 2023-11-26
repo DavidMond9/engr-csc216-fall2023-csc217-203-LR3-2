@@ -66,6 +66,8 @@ public class CourseRoll {
 	 * Sets the enrollment cap to the given number. If the number is above or below the
 	 *     allowed bounds of a Course, an IllegalArgumentException is thrown.
 	 * @param newEnrollmentCap the enrollment capacity to set.
+	 * @throws IllegalArgumentException
+	 * If it is set to be less than 10, greater than 250, or less than the size of the roll.
 	 */
 	public void setEnrollmentCap(int newEnrollmentCap) {
 		if(newEnrollmentCap < MIN_ENROLLMENT || newEnrollmentCap > MAX_ENROLLMENT) {
