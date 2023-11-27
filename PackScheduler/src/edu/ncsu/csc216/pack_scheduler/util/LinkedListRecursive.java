@@ -110,13 +110,17 @@ public class LinkedListRecursive<E> {
 		return front.recursiveAdd(front, value);
 	}
 	/**
-	 * 	 
-	 * @param idx
-	 * @param value
-	 * @return
+	 * Sets the given index in the list to be the given element.
+	 * @param idx The index to change.
+	 * @param value The value to give the index.
+	 * @return The element value that was replaced.
 	 */
 	public E set(int idx, E value) {
-		return null;
+		if(idx < 0 || idx > size - 1) throw new IndexOutOfBoundsException();
+		if(value == null) throw new NullPointerException();
+		if(contains(value)) throw new IllegalArgumentException();
+
+		return front.set(idx, value);
 	}
 	
 	/**
@@ -248,13 +252,18 @@ public class LinkedListRecursive<E> {
 			return true;
 		}
 		/**
-		 * 
-		 * @param idx
-		 * @param value
-		 * @return
+		 * Recursive method to set the element at the given index to the given value.
+		 * @param idx The index. This being 0 is a base case.
+		 * @param value The value to set.
+		 * @return The value that was replaced.
 		 */
 		private E set(int idx, E value) {
-			return null;
+			if(idx == 0) {
+				E oldValue = data;
+				data = value;
+				return oldValue;
+			}
+			return next.set(idx - 1, value);
 		}
 		
 	}
