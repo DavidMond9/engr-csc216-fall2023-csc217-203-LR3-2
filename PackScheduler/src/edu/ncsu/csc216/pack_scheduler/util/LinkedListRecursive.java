@@ -50,6 +50,7 @@ public class LinkedListRecursive<E> {
 			throw new IndexOutOfBoundsException("Index out of bounds.");
 		}
 		return front.getData(idx);
+		
 	}
 	/**
 	 * This implementation will have a public/private pair of methods. The public
@@ -102,7 +103,7 @@ public class LinkedListRecursive<E> {
 	 * @return
 	 */
 	public boolean add(int idx, E value) {
-		if (size == 0) {
+		if (isEmpty()) {
 			front = new ListNode(value);
 			size++;
 			return true;
@@ -209,7 +210,7 @@ public class LinkedListRecursive<E> {
 		private boolean recursiveAdd(ListNode current, E value) {
 			// return false if is same
 			if (current.data.equals(value)) {
-				return false;
+				throw new IllegalArgumentException("SAME");
 			}
 			if (current.next == null) {
 				current.next = new ListNode(value);
