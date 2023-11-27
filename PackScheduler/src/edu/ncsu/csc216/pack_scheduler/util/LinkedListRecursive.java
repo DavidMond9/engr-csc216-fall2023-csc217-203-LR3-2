@@ -182,8 +182,9 @@ public class LinkedListRecursive<E> {
 				return front.data;
 			}
 			front = front.next;
-			idx--;
-			return get(idx);
+			int x = idx;
+			x--;
+			return get(x);
 		}
 		/**
 		 * Checks if something is contained
@@ -227,8 +228,7 @@ public class LinkedListRecursive<E> {
 		 * @return returns the data of the removed element.
 		 */
 		private E remove(int idx) {
-			int i = 0;
-			if(i == idx) {
+			if(idx == 0) {
 				E removedEle = front.next.data;
 				front.next = front.next.next;
 				size--;
@@ -236,8 +236,9 @@ public class LinkedListRecursive<E> {
 			}
 		
 			front = front.next;
-			i++;
-			return remove(i);
+			int x = idx;
+			x--;
+			return remove(x);
 		}
 		/**
 		 * Removes a specific element in the list.
