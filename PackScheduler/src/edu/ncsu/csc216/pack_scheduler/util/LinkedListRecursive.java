@@ -110,7 +110,7 @@ public class LinkedListRecursive<E> {
 		return front.recursiveAdd(front, value);
 	}
 	/**
-	 * 
+	 * 	 
 	 * @param idx
 	 * @param value
 	 * @return
@@ -119,6 +119,31 @@ public class LinkedListRecursive<E> {
 		return false;
 	}
 	
+	/*
+	 * Removes an element at a specific index in the list.
+	 * @param idx the index to be removing the element at.
+	 * @return returns the data of the removed element.
+	 */
+	public E remove(int idx) {
+		if(idx < 0 || idx >= size) {
+			throw new IndexOutOfBoundsException("Index out of bounds.");
+		}
+		if(idx == 0) {
+			E removedEle = front.data;
+			front = front.next;
+			size--;
+			return removedEle;
+		}
+		return front.remove(idx);
+	}
+	/**
+	 * Removes a specific element in the list.
+	 * @param ele element to be removed in the list.
+	 * @return returns true if element was removed, false if element was not removed.
+	 */
+	public boolean remove(E ele) {
+		return true;
+	}
 	/**
 	 * Class representing a single element in this linked list. Holds data and a single reference to the next element.
 	 * 
@@ -159,6 +184,7 @@ public class LinkedListRecursive<E> {
 			return front.data;
 		}
 		/**
+<<<<<<< HEAD
 		 * Checks if something is contained
 		 * @param current the current ListNode
 		 * @param value the value to check
@@ -193,6 +219,28 @@ public class LinkedListRecursive<E> {
 				ListNode c = current.next;
 				return recursiveAdd(c, value);
 			}
+		}
+		/**
+		 * Removes an element at a specific index in the list.
+		 * @param idx the index to be removing the element at.
+		 * @return returns the data of the removed element.
+		 */
+		private E remove(int idx) {
+			for(int i = 0; i < idx - 1; i++) {
+				front = front.next;
+			}
+			E removedEle = front.next.data;
+			front.next = front.next.next;
+			size--;
+			return removedEle;
+		}
+		/**
+		 * Removes a specific element in the list.
+		 * @param ele element to be removed in the list.
+		 * @return returns true if element was removed, false if element was not removed.
+		 */
+		private boolean remove(E ele) {
+			return true;
 		}
 		
 	}
