@@ -1,5 +1,7 @@
 package edu.ncsu.csc216.pack_scheduler.user;
 
+import edu.ncsu.csc216.pack_scheduler.user.schedule.FacultySchedule;
+
 /**
  * The Faculty class represents an individual faculty record. The Faculty class
  * is a "plain old java object" (POJO) consisting mostly of getters and setters.
@@ -8,7 +10,7 @@ package edu.ncsu.csc216.pack_scheduler.user;
  * courses they can teach in a given semester (between 1 and 3 inclusive) rather
  * keeping track of credits as Students do.
  * 
- * @author Warren Long
+ * @author Warren Long, Joey Hughes
  */
 
 public class Faculty extends User implements Comparable<Faculty> {
@@ -21,6 +23,9 @@ public class Faculty extends User implements Comparable<Faculty> {
 	
 	/** The minimum number of courses*/
 	public static final int MIN_COURSES = 1;
+	
+	/** The faculty's FacultySchedule of Courses */
+	private FacultySchedule schedule;
 	
 	
 	/**
@@ -37,17 +42,33 @@ public class Faculty extends User implements Comparable<Faculty> {
 	public Faculty(String firstName, String lastName, String id, String email, String password, int maxCourses) {
 		super(firstName, lastName, id, email, password);
 		setMaxCourses(maxCourses);
+		schedule = new FacultySchedule(id);
 	}
 	
 	/**
-	 * gets's the faculty's courses.
+	 * Gets's the faculty's courses.
 	 * @return maxCourses the max courses of the faculty
 	 */
 	public int getMaxCourses() {
 		return maxCourses;
 	}
 	
+	/**
+	 * Gets this faculty's FacultySchedule.
+	 * @return This faculty's FacultySchedule.
+	 */
+	public FacultySchedule getSchedule() {
+		return schedule;
+	}
 	
+	/**
+	 * Returns true if the number of courses in the 
+	 *     schedule is greater than this Faculty's max courses.
+	 * @return True if the faculty is scheduled for more than their max courses, false otherwise.
+	 */
+	public boolean isOverloaded() {
+		return schedule.getNumScheduledCourses() > maxCourses;
+	}
 	
 	/**
 	 * generates the hash code for the faculty.

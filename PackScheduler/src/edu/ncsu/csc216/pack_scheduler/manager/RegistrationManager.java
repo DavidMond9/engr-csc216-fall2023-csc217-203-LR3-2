@@ -260,6 +260,36 @@ public class RegistrationManager {
 	        return false; 
 	    }
 	}
+	
+	/**
+	 * Adds the given faculty member to the course as the instructor ID, and adds the Course to the faculty's FacultySchedule.
+	 * @param c The Course.
+	 * @param f The Faculty member.
+	 * @return True if the course was added successfully, false otherwise.
+	 */
+	public boolean addFacultyToCourse(Course c, Faculty f) {
+		return currentUser != null && currentUser.equals(registrar) && (f.getSchedule().addCourseToSchedule(c));
+	}
+	
+	/**
+	 * Removes the given faculty member from the course, setting its instructor ID to null, and removes the Course from the faculty's FacultySchedule.
+	 * @param c The Course.
+	 * @param f The Faculty member.
+	 * @return True if the course was removed successfully, false otherwise.
+	 */
+	public boolean removeFacultyFromCourse(Course c, Faculty f) {
+		return currentUser != null && currentUser.equals(registrar) && (f.getSchedule().removeCourseFromSchedule(c));
+	}
+	
+	/**
+	 * Resets the given Faculty's FacultySchedule.
+	 * @param f The Faculty member.
+	 */
+	public void resetFacultySchedule(Faculty f) {
+		if(currentUser != null && currentUser.equals(registrar)) {
+			f.getSchedule().resetSchedule();
+		}
+	}
 
 	/**
 	 * Resets the logged in student's schedule by dropping them
