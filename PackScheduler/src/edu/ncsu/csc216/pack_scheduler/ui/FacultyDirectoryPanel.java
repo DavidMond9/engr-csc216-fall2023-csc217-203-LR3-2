@@ -342,8 +342,8 @@ public class FacultyDirectoryPanel extends JPanel implements ActionListener {
 		private Object [][] data;
 		
 		/**
-		 * Constructs the FacultyDirectoryTableModel by requesting the latest information
-		 * from the RequirementTrackerModel.
+		 * Constructs the {@link FacultyDirectoryTableModel} by requesting the latest information
+		 * from the {@link RequirementTrackerModel}.
 		 */
 		public FacultyDirectoryTableModel() {
 			updateData();
@@ -400,10 +400,11 @@ public class FacultyDirectoryPanel extends JPanel implements ActionListener {
 		}
 		
 		/**
-		 * Updates the given model with  Faculty information from the  FacultyDirectory.
+		 * Updates the given model with {@link Faculty} information from the {@link FacultyDirectory}.
 		 */
 		public void updateData() {
 			data = facultyDirectory.getFacultyDirectory();
 		}
 	}
+
 }
