@@ -93,7 +93,7 @@ class LinkedListRecursiveTest {
 		LinkedListRecursive<String> stringList = new LinkedListRecursive<String>();
 		assertDoesNotThrow(() -> intList.add(0, 15));
 		assertDoesNotThrow(() -> stringList.add(0, "Whatever"));
-		assertThrows(IllegalArgumentException.class, 
+		assertThrows(IndexOutOfBoundsException.class, 
 				() -> intList.set(-20, 15));
 		assertThrows(IndexOutOfBoundsException.class, 
 				() -> stringList.set(500, "Now"));
