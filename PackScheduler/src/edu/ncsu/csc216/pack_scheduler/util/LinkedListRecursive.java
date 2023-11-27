@@ -64,19 +64,9 @@ public class LinkedListRecursive<E> {
 	 * @return true if it contains the value
 	 */
 	public boolean contains(E value) {
-		return contains(front, value);
+		return front.contains(front, value);
 	}
 	
-	private boolean contains(ListNode current, E value) {
-		if (current == null) {
-			return false;
-		} else if (current.data == value) {
-			return true;
-		} else {
-			ListNode c = current.next;
-			return contains(c, value);
-		}
-	}
 
 	/**
 	 * This implementation will have a public/private pair of methods. The public
@@ -97,29 +87,38 @@ public class LinkedListRecursive<E> {
 	 * @param value the value to add to the list
 	 * @return true if it was added, false otherwise
 	 */
-	public boolean recursiveAdd(E value) {
+	public boolean add(E value) {
 		if (size == 0) {
 			front = new ListNode(value);
 			size++;
 			return true;
 		} 
-		return recursiveAdd(front, value);
+		return front.recursiveAdd(front, value);
 	}
-	
-	private boolean recursiveAdd(ListNode current, E value) {
-		// return false if is same
-		if (current.data.equals(value)) {
-			return false;
-		}
-		if (current.next == null) {
-			current.next = new ListNode(value);
+	/**
+	 * 
+	 * @param idx
+	 * @param value
+	 * @return
+	 */
+	public boolean add(int idx, E value) {
+		if (size == 0) {
+			front = new ListNode(value);
 			size++;
 			return true;
-		} else {
-			ListNode c = current.next;
-			return recursiveAdd(c, value);
-		}
+		} 
+		return front.recursiveAdd(front, value);
 	}
+	/**
+	 * 
+	 * @param idx
+	 * @param value
+	 * @return
+	 */
+	public boolean set(int idx, E value) {
+		return false;
+	}
+	
 	/**
 	 * Class representing a single element in this linked list. Holds data and a single reference to the next element.
 	 * 
@@ -158,6 +157,42 @@ public class LinkedListRecursive<E> {
 				front = front.next;
 			}
 			return front.data;
+		}
+		/**
+		 * Checks if something is contained
+		 * @param current the current ListNode
+		 * @param value the value to check
+		 * @return true if it is contained
+		 */
+		private boolean contains(ListNode current, E value) {
+			if (current == null) {
+				return false;
+			} else if (current.data == value) {
+				return true;
+			} else {
+				ListNode c = current.next;
+				return contains(c, value);
+			}
+		}
+		/**
+		 * adds a value to the list
+		 * @param current the current node
+		 * @param value the value to add
+		 * @return true if the value is added
+		 */
+		private boolean recursiveAdd(ListNode current, E value) {
+			// return false if is same
+			if (current.data.equals(value)) {
+				return false;
+			}
+			if (current.next == null) {
+				current.next = new ListNode(value);
+				size++;
+				return true;
+			} else {
+				ListNode c = current.next;
+				return recursiveAdd(c, value);
+			}
 		}
 		
 	}
