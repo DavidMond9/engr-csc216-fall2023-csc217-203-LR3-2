@@ -9,6 +9,8 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.manager.RegistrationManager;
+import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc217.collections.list.SortedList;
 
 /**
@@ -22,8 +24,11 @@ import edu.ncsu.csc217.collections.list.SortedList;
 public class CourseRecordIO {
 
     /**
-     * Reads course records from a file and generates a list of valid Courses.  Any invalid
-     * Courses are ignored.  If the file to read cannot be found or the permissions are incorrect
+     * Reads course records from a file and generates a list of valid Courses. 
+     * Valid Courses with instructor IDs of real instructors in the RegistrationManager are given their instructorID 
+     * and the course is added to the Faculty's FacultySchedule. If a Course's instructor ID is not the ID of a faculty
+     * in the RegistrationManager, the course is given the instructor ID of null.
+     * Any invalid Courses are ignored.  If the file to read cannot be found or the permissions are incorrect
      * a File NotFoundException is thrown.
      * @param fileName file to read Course records from
      * @return a list of valid Courses
@@ -68,6 +73,8 @@ public class CourseRecordIO {
 	
 	/**
 	 * Reads course string and returns a course object that defines the courses characteristics.
+	 *     The Course will have the given instructorID only if it is the ID of a faculty in the
+	 *     RegistrationManager. In that case, it will also be added to that Faculty's schedule.
 	 * @param nextLine nextLine input for the scanner to read the course string.
 	 * @return Course returns a course object for the inputed course string.
 	 * @throws IllegalArgumentException if the line cannot be read in as a Course.
@@ -88,6 +95,9 @@ public class CourseRecordIO {
 			int courseEnrollmentCap = courseReader.nextInt();
 			String courseMeetingDays = courseReader.next();
 			
+			// The course to be returned
+			Course newCourse = null;
+			
 			//arranged
 			if("A".equals(courseMeetingDays)) {
 				//if there is a time listed, throw exception
@@ -98,7 +108,7 @@ public class CourseRecordIO {
 				else {
 					courseReader.close();
 					//course constructor without times
-					return new Course(courseName, courseTitle, courseSection, courseCredits, courseInstructorId, courseEnrollmentCap, courseMeetingDays);
+					newCourse = new Course(courseName, courseTitle, courseSection, courseCredits, null, courseEnrollmentCap, courseMeetingDays);
 				}
 			}
 			else {
@@ -113,8 +123,17 @@ public class CourseRecordIO {
 				}
 				courseReader.close();
 				//course constructor with times
-				return new Course(courseName, courseTitle, courseSection, courseCredits, courseInstructorId, courseEnrollmentCap, courseMeetingDays, courseStartTime, courseEndTime);
+				newCourse = new Course(courseName, courseTitle, courseSection, courseCredits, null, courseEnrollmentCap, courseMeetingDays, courseStartTime, courseEndTime);
 			}
+			
+			// Check if there is a faculty with the given ID, if there is, add the course to their schedule
+			//     The adding of the course to their schedule will update the Course's instructor ID
+			Faculty givenFaculty = RegistrationManager.getInstance().getFacultyDirectory().getFacultyById(courseInstructorId);
+			if(givenFaculty != null) {
+				givenFaculty.getSchedule().addCourseToSchedule(newCourse);
+			}
+			
+			return newCourse;
 		}
 		//throw IAE if NoSuchElementException
 		catch(NoSuchElementException e) {

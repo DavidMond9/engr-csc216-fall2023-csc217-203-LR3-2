@@ -12,7 +12,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
+import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.directory.FacultyDirectory;
 import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
+import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
 
@@ -412,5 +415,81 @@ public class RegistrationManagerTest {
 		assertEquals(10, catalog.getCourseFromCatalog("CSC116", "003").getCourseRoll().getOpenSeats(), "Course should have all seats available after reset.");
 		
 		manager.logout();
+	}
+	
+	
+	/**
+	 * Tests RegistrationManager FacultySchedule methods.
+	 */
+	@Test
+	public void testFacultySchedule() {
+		StudentDirectory studentDirectory = manager.getStudentDirectory();
+		studentDirectory.loadStudentsFromFile("test-files/student_records.txt");
+		
+		FacultyDirectory facultyDirectory = manager.getFacultyDirectory();
+		facultyDirectory.loadFacultyFromFile("test-files/faculty_records.txt");
+		
+		CourseCatalog catalog = manager.getCourseCatalog();
+		catalog.loadCoursesFromFile("test-files/course_records.txt");
+		
+		manager.logout(); //In case not handled elsewhere
+		
+		//Test if not logged in
+		try {
+			manager.resetSchedule();
+			fail("RegistrationManager.resetSchedule() - If the current user is null, an IllegalArgumentException should be thrown, but was not.");
+		} catch (IllegalArgumentException e) {
+			assertNull(manager.getCurrentUser(), "RegistrationManager.resetSchedule() - currentUser is null, so cannot enroll in course.");
+		}
+		
+		//test if registrar is logged in
+		manager.login(registrarUsername, registrarPassword);
+		try {
+			manager.resetSchedule();
+			fail("RegistrationManager.resetSchedule() - If the current user is registrar, an IllegalArgumentException should be thrown, but was not.");
+		} catch (IllegalArgumentException e) {
+			assertEquals(registrarUsername, manager.getCurrentUser().getId(), "RegistrationManager.resetSchedule() - currentUser is registrar, so cannot enroll in course.");
+		}
+		manager.logout();
+		
+		manager.login("awitt", "pw");
+		assertEquals("awitt", manager.getCurrentUser().getId());
+		
+		Course c = catalog.getCourseFromCatalog("CSC116", "002");
+		Faculty f = facultyDirectory.getFacultyById("awitt");
+		assertNull(c.getInstructorId());
+		assertEquals(0, f.getSchedule().getNumScheduledCourses());
+		
+		// Cannot run these because currently logged in as a faculty
+		assertFalse(manager.addFacultyToCourse(c, f));
+		assertFalse(manager.removeFacultyFromCourse(c, f));
+		assertNull(c.getInstructorId());
+		assertEquals(0, f.getSchedule().getNumScheduledCourses());
+		
+		manager.logout();
+		assertFalse(manager.addFacultyToCourse(c, f));
+		assertFalse(manager.removeFacultyFromCourse(c, f));
+		
+		// Login as registrar and add faculty to course
+		manager.login(registrarUsername, registrarPassword);
+		
+		// Add the faculty to the course
+		assertTrue(manager.addFacultyToCourse(c, f));
+		assertEquals("awitt", c.getInstructorId());
+		assertEquals(1, f.getSchedule().getNumScheduledCourses());
+		
+		// Remove the faculty from the course
+		assertTrue(manager.removeFacultyFromCourse(c, f));
+		assertNull(c.getInstructorId());
+		assertEquals(0, f.getSchedule().getNumScheduledCourses());
+		
+		// Add the faculty back to the course, then reset their schedule
+		assertTrue(manager.addFacultyToCourse(c, f));
+		assertEquals("awitt", c.getInstructorId());
+		assertEquals(1, f.getSchedule().getNumScheduledCourses());
+		manager.resetFacultySchedule(f);
+		assertNull(c.getInstructorId());
+		assertEquals(0, f.getSchedule().getNumScheduledCourses());
+		
 	}
 }
