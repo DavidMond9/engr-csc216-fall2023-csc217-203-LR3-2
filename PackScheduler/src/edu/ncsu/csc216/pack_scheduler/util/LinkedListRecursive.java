@@ -48,7 +48,7 @@ public class LinkedListRecursive<E> {
 	public E get(int idx) {
 		if(idx < 0 || idx >= size) {
 			throw new IndexOutOfBoundsException("Index out of bounds.");
-		}		
+		}
 		return front.get(idx);
 	}
 	/**
@@ -134,7 +134,8 @@ public class LinkedListRecursive<E> {
 			size--;
 			return removedEle;
 		}
-		return front.remove(idx);
+		ListNode temp = front;
+		return temp.remove(idx);
 	}
 	/**
 	 * Removes a specific element in the list.
@@ -179,12 +180,9 @@ public class LinkedListRecursive<E> {
 		 */
 		private E get(int idx) {
 			if(idx == 0) {
-				return front.data;
+				return data;
 			}
-			front = front.next;
-			int x = idx;
-			x--;
-			return get(x);
+			return next.get(idx - 1);
 		}
 		/**
 		 * Checks if something is contained
@@ -229,8 +227,9 @@ public class LinkedListRecursive<E> {
 		 */
 		private E remove(int idx) {
 			if(idx == 0) {
-				E removedEle = front.next.data;
-				front.next = front.next.next;
+				E removedEle = this.next.data;
+				this.next = this.next.next;
+				front = this;
 				size--;
 				return removedEle;
 			}
@@ -246,7 +245,16 @@ public class LinkedListRecursive<E> {
 		 * @return returns true if element was removed, false if element was not removed.
 		 */
 		private boolean remove(E ele) {
-			return true;
+			if(front.next == null) {
+				return false;
+			}
+			if(front.next.data == ele) {
+				front.next = front.next.next;
+				size--;
+				return true;
+			}
+			front = front.next;
+			return remove(ele);
 		}
 		/**
 		 * 
