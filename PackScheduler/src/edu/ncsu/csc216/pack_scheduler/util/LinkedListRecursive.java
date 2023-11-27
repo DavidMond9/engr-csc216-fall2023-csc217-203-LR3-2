@@ -17,6 +17,41 @@ public class LinkedListRecursive<E> {
 	 * the front list node of the list
 	 */
 	private ListNode front;
+	
+	/**
+	 * Constructor for LinkedListRecursive, initializes the state to represent an empty list.
+	 */
+	public LinkedListRecursive() {
+		front = null;
+		size = 0;
+	}
+	
+	/**
+	 * Getter for getting the size of the list.
+	 * @return returns an integer, size of the list.
+	 */
+	public int size() {
+		return size;
+	}
+	/**
+	 * Method to check if the size of the list is zero, returns true if empty, false if not.
+	 * @return Returns a boolean to determine if size of list is empty.
+	 */
+	public boolean isEmpty() {
+		return size == 0;
+	}
+	/**
+	 * Gets the data in the list node at a specific index.
+	 * @param idx index to get the data from.
+	 * @return Returns an element of the data in the list node.
+	 */
+	public E get(int idx) {
+		if(idx < 0 || idx >= size) {
+			throw new IndexOutOfBoundsException("Index out of bounds.");
+		}
+		return front.getData(idx);
+	}
+	
 	/**
 	 * Class representing a single element in this linked list. Holds data and a single reference to the next element.
 	 * 
@@ -27,7 +62,6 @@ public class LinkedListRecursive<E> {
 		private E data;
 		/** The next node in the list */
 		private ListNode next;
-		
 		/**
 		 * Creates a new ListNode with only data
 		 * @param data Data to put in the listNode
@@ -45,6 +79,17 @@ public class LinkedListRecursive<E> {
 		public ListNode(E data, ListNode next) {
 			this.data = data;
 			this.next = next;
+		}
+		/**
+		 * Gets the data in the list node at a specific index.
+		 * @param idx index to get the data from.
+		 * @return Returns an element of the data in the list node.
+		 */
+		private E getData(int idx) {
+			for(int i = 0; i < idx; i++) {
+				front = front.next;
+			}
+			return front.data;
 		}
 		
 	}
