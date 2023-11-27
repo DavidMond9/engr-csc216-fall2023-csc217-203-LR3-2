@@ -27,3 +27,17 @@
 - **Update RegistrationManager** | **Owner:** David Mond, **Due:** 11/16, **Status:** Finished
 
 - **Generate Javadoc and Double Check** | **Owner:** David Mond, **Due:** 11/17, **Status:** Finished
+
+## Lab 11
+
+- **Implement and Test LinkedListRecursive** | **Owner:** Warren Long, **Due:** 11/27, **Status:** Pending
+
+- **Implement and Test FacultySchedule** | **Owner:** David Mond, **Due:** 11/27, **Status:** Pending
+
+- **Update and Test Faculty** | **Owner:** Joey Hughes, **Due:** 11/27, **Status:** Pending
+
+- **Update and Test Course and CourseRecordIO** | **Owner:** Joey Hughes, **Due:** 12/2, **Status:** Pending
+
+- **Update RegistrationManager** | **Owner:** Joey Hughes, **Due:** 12/2, **Status:** Pending
+
+- **Generate Javadoc and Double Check** | **Owner:** David Mond, **Due:** 12/3, **Status:** Pending
