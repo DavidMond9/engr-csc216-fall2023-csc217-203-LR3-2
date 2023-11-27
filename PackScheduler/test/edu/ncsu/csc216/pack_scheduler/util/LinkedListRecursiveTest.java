@@ -40,20 +40,20 @@ class LinkedListRecursiveTest {
 		assertDoesNotThrow(() -> intList.add(200));
 		assertDoesNotThrow(() -> intList.add(301));
 		assertDoesNotThrow(() -> intList.add(999));
-		assertAll(
-				() -> assertEquals(intList.get(0), 15),
-				() -> assertEquals(intList.get(1), 5),
-				() -> assertEquals(intList.get(2), 3),
-				() -> assertEquals(intList.get(3), 7),
-				() -> assertEquals(intList.get(4), 14),
-				() -> assertEquals(intList.get(5), 13),
-				() -> assertEquals(intList.get(6), 300),
-				() -> assertEquals(intList.get(7), 400),
-				() -> assertEquals(intList.get(8), 200),
-				() -> assertEquals(intList.get(9), 301),
-				() -> assertEquals(intList.get(10), 999)
+		assertEquals(intList.size(), 11);
+				assertEquals(intList.get(0), 15);
+				assertEquals(intList.get(1), 5);
+				 assertEquals(intList.get(2), 3);
+				assertEquals(intList.get(3), 7);
+				 assertEquals(intList.get(4), 14);
+				assertEquals(intList.get(5), 13);
+				 assertEquals(intList.get(6), 300);
+				 assertEquals(intList.get(7), 400);
+				assertEquals(intList.get(8), 200);
+				assertEquals(intList.get(9), 301);
+				assertEquals(intList.get(10), 999);
 				
-				);
+			
 		
 	}
 
