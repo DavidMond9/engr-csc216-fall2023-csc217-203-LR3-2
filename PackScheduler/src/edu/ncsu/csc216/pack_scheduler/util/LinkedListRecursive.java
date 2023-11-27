@@ -48,9 +48,8 @@ public class LinkedListRecursive<E> {
 	public E get(int idx) {
 		if(idx < 0 || idx >= size) {
 			throw new IndexOutOfBoundsException("Index out of bounds.");
-		}
-		return front.getData(idx);
-		
+		}		
+		return front.get(idx);
 	}
 	/**
 	 * This implementation will have a public/private pair of methods. The public
@@ -89,7 +88,7 @@ public class LinkedListRecursive<E> {
 	 * @return true if it was added, false otherwise
 	 */
 	public boolean add(E value) {
-		if (size == 0) {
+		if (isEmpty()) {
 			front = new ListNode(value);
 			size++;
 			return true;
@@ -116,11 +115,11 @@ public class LinkedListRecursive<E> {
 	 * @param value
 	 * @return
 	 */
-	public boolean set(int idx, E value) {
-		return false;
+	public E set(int idx, E value) {
+		return null;
 	}
 	
-	/*
+	/**
 	 * Removes an element at a specific index in the list.
 	 * @param idx the index to be removing the element at.
 	 * @return returns the data of the removed element.
@@ -178,14 +177,15 @@ public class LinkedListRecursive<E> {
 		 * @param idx index to get the data from.
 		 * @return Returns an element of the data in the list node.
 		 */
-		private E getData(int idx) {
-			for(int i = 0; i < idx; i++) {
-				front = front.next;
+		private E get(int idx) {
+			if(idx == 0) {
+				return front.data;
 			}
-			return front.data;
+			front = front.next;
+			idx--;
+			return get(idx);
 		}
 		/**
-<<<<<<< HEAD
 		 * Checks if something is contained
 		 * @param current the current ListNode
 		 * @param value the value to check
@@ -227,13 +227,17 @@ public class LinkedListRecursive<E> {
 		 * @return returns the data of the removed element.
 		 */
 		private E remove(int idx) {
-			for(int i = 0; i < idx - 1; i++) {
-				front = front.next;
+			int i = 0;
+			if(i == idx) {
+				E removedEle = front.next.data;
+				front.next = front.next.next;
+				size--;
+				return removedEle;
 			}
-			E removedEle = front.next.data;
-			front.next = front.next.next;
-			size--;
-			return removedEle;
+		
+			front = front.next;
+			i++;
+			return remove(i);
 		}
 		/**
 		 * Removes a specific element in the list.
@@ -242,6 +246,15 @@ public class LinkedListRecursive<E> {
 		 */
 		private boolean remove(E ele) {
 			return true;
+		}
+		/**
+		 * 
+		 * @param idx
+		 * @param value
+		 * @return
+		 */
+		private E set(int idx, E value) {
+			return null;
 		}
 		
 	}
