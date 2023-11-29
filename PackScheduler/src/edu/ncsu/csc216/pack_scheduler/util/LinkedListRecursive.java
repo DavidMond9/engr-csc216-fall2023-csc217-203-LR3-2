@@ -151,9 +151,19 @@ public class LinkedListRecursive<E> {
 		} 		
 		return front.recursiveAdd(idx, value);
 	}
+
 	/**
 	 * Sets the given index in the list to be the given element.
-	 * @param idx The index to change.
+	 * 
+	 * This implementation will have a public/private pair of methods. The public
+	 * method is LinkedListRecursive.set(int idx, E element). The private method is
+	 * ListNode.set(int idx, E element). Both methods return the data previously in
+	 * the ListNode. The public method handles bounds checking on the index. Then
+	 * the public method transfers the flow of control to the private
+	 * ListNode.set(int idx, E element) method, which completes the recursion to set
+	 * to element at the appropriate location.
+	 * 
+	 * @param idx   The index to change.
 	 * @param value The value to give the index.
 	 * @return The element value that was replaced.
 	 */
@@ -167,6 +177,18 @@ public class LinkedListRecursive<E> {
 	
 	/**
 	 * Removes an element at a specific index in the list.
+	 * 
+	 * This implementation will have a public/private pair of methods. The public
+	 * method is LinkedListRecursive.remove(int idx). The private method is
+	 * ListNode.remove(int idx). Both methods return the data of the removed
+	 * ListNode. The public method handles bounds checking on the index and the
+	 * special case of removing the first node in the list. Then the public method
+	 * transfers the flow of control to the private ListNode.remove(int idx) method,
+	 * which completes the recursion to remove to element at the appropriate
+	 * location. You’ll need to look ahead.
+	 * 
+	 * Don’t forget to decrement size on all paths where the element is removed!
+	 * 
 	 * @param idx the index to be removing the element at.
 	 * @return returns the data of the removed element.
 	 */
@@ -184,11 +206,36 @@ public class LinkedListRecursive<E> {
 	}
 	/**
 	 * Removes a specific element in the list.
+	 * 
+	 * This implementation will have a public/private pair of methods. The public
+	 * method is LinkedListRecursive.remove(E element). 
+	 * 
+	 * The private method is
+	 * ListNode.remove(E element). Both methods return the true if the element is
+	 * removed. 
+	 * 
+	 * The public method checks if the element is null, if the list is
+	 * empty, and handles the special case of removing the first node in the list.
+	 * Then the public method transfers the flow of control to the private
+	 * ListNode.remove(E element) method, which completes the recursion to remove to
+	 * element at the appropriate location. You’ll need to look ahead.
+	 * 
+	 * Don’t forget to decrement size on all paths where the element is removed!
 	 * @param ele element to be removed in the list.
 	 * @return returns true if element was removed, false if element was not removed.
 	 */
 	public boolean remove(E ele) {
-		return true;
+		if(ele == null || isEmpty()) {
+			// I am not sure I should throw this, it does not say.
+			// It just says to check.
+			throw new IndexOutOfBoundsException("Index out of bounds.");
+		}
+		if (front.data.equals(ele)) {
+			front = front.next;
+			size--;
+			return true;
+		} 
+		return front.remove(ele);
 	}
 	/**
 	 * Class representing a single element in this linked list. Holds data and a single reference to the next element.
@@ -262,7 +309,7 @@ public class LinkedListRecursive<E> {
 		}
 		/**
 		 * adds a value to the list
-		 * 
+		 * @param idx the index to add the value at
 		 * @param value the value to add
 		 * @return true if the value is added
 		 */
@@ -296,16 +343,16 @@ public class LinkedListRecursive<E> {
 		 * @return returns true if element was removed, false if element was not removed.
 		 */
 		private boolean remove(E ele) {
-			if(front.next == null) {
+			if(this.next == null) {
 				return false;
 			}
-			if(front.next.data == ele) {
-				front.next = front.next.next;
+			if(this.next.data == ele) {
+				this.next = this.next.next;
 				size--;
 				return true;
 			}
-			front = front.next;
-			return remove(ele);
+	
+			return next.remove(ele);
 		}
 		/**
 		 * Recursive method to set the element at the given index to the given value.

@@ -169,6 +169,46 @@ class LinkedListRecursiveTest {
 
 		
 	}
+	/**
+	 * Tests to see if removal of elements is correct
+	 * Also tests for correct thrown exceptions when giving invalid input
+	 * Also tests to see if remove correctly returns the removed element
+	 */
+	@Test
+	void testRemoveIntE() {
+		LinkedListRecursive<String> stringList = new LinkedListRecursive<String>();
+		
+		assertThrows(IndexOutOfBoundsException.class, 
+				() -> stringList.remove(12));
+		
+		stringList.add("1");
+		stringList.add("2");
+		stringList.add("3");
+		stringList.add("4");
+		stringList.add("5");
+		stringList.add("6");
+		
+		assertEquals(6, stringList.size());
+
+		assertThrows(IndexOutOfBoundsException.class, 
+				() -> stringList.remove(null));
+		
+		assertTrue(stringList.remove("1"));
+		assertTrue(stringList.remove("4"));
+		assertTrue(stringList.remove("6"));
+		
+		assertEquals("2", stringList.get(0));
+		assertEquals("3", stringList.get(1));
+		assertEquals("5", stringList.get(2));
+		
+		assertEquals(3, stringList.size());
+
+
+
+
+
+		
+	}
 
 	/**
 	 * Tests to see if you can set an element in the list to something else
