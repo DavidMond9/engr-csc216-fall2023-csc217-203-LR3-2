@@ -268,6 +268,9 @@ public class RegistrationManager {
 	 * @return True if the course was added successfully, false otherwise.
 	 */
 	public boolean addFacultyToCourse(Course c, Faculty f) {
+		if (currentUser != registrar) {
+			throw new IllegalArgumentException();
+		}
 		return currentUser != null && currentUser.equals(registrar) && (f.getSchedule().addCourseToSchedule(c));
 	}
 	
@@ -278,6 +281,9 @@ public class RegistrationManager {
 	 * @return True if the course was removed successfully, false otherwise.
 	 */
 	public boolean removeFacultyFromCourse(Course c, Faculty f) {
+		if (currentUser != registrar) {
+			throw new IllegalArgumentException();
+		}
 		return currentUser != null && currentUser.equals(registrar) && (f.getSchedule().removeCourseFromSchedule(c));
 	}
 	
@@ -286,6 +292,9 @@ public class RegistrationManager {
 	 * @param f The Faculty member.
 	 */
 	public void resetFacultySchedule(Faculty f) {
+		if (currentUser != registrar) {
+			throw new IllegalArgumentException();
+		}
 		if(currentUser != null && currentUser.equals(registrar)) {
 			f.getSchedule().resetSchedule();
 		}
