@@ -99,23 +99,57 @@ public class LinkedListRecursive<E> {
 			throw new IllegalArgumentException();
 		}
 		
-		return front.recursiveAdd(front, value);
+		return front.recursiveAdd(value);
 	}
+
 	/**
+	 * This implementation will have a public/private pair of methods. The public
+	 * method is LinkedListRecursive.add(int idx, E element). The private method is
+	 * ListNode.add(int idx, E element). 
 	 * 
-	 * @param idx
-	 * @param value
-	 * @return
+	 * The public method checks that the element
+	 * isn’t already in the list (an IllegalArgumentException is thrown if the
+	 * element already exists), handles bounds checking on the index (an
+	 * IndexOutOfBoundsException is thrown for an invalid index), checks that the
+	 * element isn’t null (a NullPointerException is thrown if element is null), and
+	 * the special case of adding a node to the front of the list. 
+	 * 
+	 * If the element is
+	 * added to the middle or end of the list, then the public method transfers the
+	 * flow of control to the private ListNode.add(int idx, E element) method, which
+	 * completes the recursion to add to element at the appropriate location.
+	 * 
+	 * Don’t forget to increment size on all paths where the element is added!
+	 * 
+	 * @param idx the index to add the value to
+	 * @param value the value to add at the index
+	 * @return true if the value was added, false otherwise
 	 */
 	public boolean add(int idx, E value) {
-		if (isEmpty()) {
-			front = new ListNode(value);
-			size++;
-			return true;
-		} else if (contains(value)) {
+		if (contains(value)) {
 			throw new IllegalArgumentException();
 		}
-		return front.recursiveAdd(front, value);
+		if (idx > size || idx < 0) {
+			throw new IndexOutOfBoundsException();
+		}
+		if (value == null) {
+			throw new NullPointerException();
+		}
+		if (idx == 0) {
+			if (isEmpty()) {
+				front = new ListNode(value);
+				size++;
+				return true;
+			} else {
+				ListNode temp = front;
+				front = new ListNode(value);
+				front.next = temp;
+				size++;
+				return true;
+			}
+			
+		} 		
+		return front.recursiveAdd(idx, value);
 	}
 	/**
 	 * Sets the given index in the list to be the given element.
@@ -212,20 +246,35 @@ public class LinkedListRecursive<E> {
 		}
 		/**
 		 * adds a value to the list
-		 * @param current the current node
+		 * 
 		 * @param value the value to add
 		 * @return true if the value is added
 		 */
-		private boolean recursiveAdd(ListNode current, E value) {
+		private boolean recursiveAdd(E value) {
 			// return false if is same
-			if (current.next == null) {
-				current.next = new ListNode(value);
+			if (next == null) {
+				next = new ListNode(value);
 				size++;
 				return true;
 			} else {
-				ListNode c = current.next;
-				return recursiveAdd(c, value);
+				return next.recursiveAdd(value);
 			}
+		}
+		/**
+		 * adds a value to the list
+		 * 
+		 * @param value the value to add
+		 * @return true if the value is added
+		 */
+		private boolean recursiveAdd(int idx, E value) {
+			if(idx == 1) {
+				ListNode temp = next;
+				next = new ListNode(value);
+				next.next = temp;
+				size++;
+				return true;
+			}
+			return next.recursiveAdd(idx - 1, value);
 		}
 		/**
 		 * Removes an element at a specific index in the list.
