@@ -72,7 +72,7 @@ public class CourseCatalogTest {
 		assertNull(ws.getCourseFromCatalog("CSC 492", "001"));
 		
 		//Attempt to get a course that does exist
-		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME);
+		Course c = new Course(NAME, TITLE, SECTION, CREDITS, null, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME);
 		assertEquals(c, ws.getCourseFromCatalog("CSC216", "001"));
 	}
 	
