@@ -64,7 +64,10 @@ public class LinkedListRecursive<E> {
 	 * @return true if it contains the value
 	 */
 	public boolean contains(E value) {
-		return front.contains(front, value);
+		if (front == null) {
+			return false;
+		}
+		return front.contains(value);
 	}
 	
 
@@ -93,6 +96,9 @@ public class LinkedListRecursive<E> {
 			size++;
 			return true;
 		} 
+		if (this.contains(value)) {
+			throw new IllegalArgumentException();
+		}
 		return front.recursiveAdd(front, value);
 	}
 	/**
@@ -138,8 +144,7 @@ public class LinkedListRecursive<E> {
 			size--;
 			return removedEle;
 		}
-		ListNode temp = front;
-		return temp.remove(idx);
+		return front.remove(idx);
 	}
 	/**
 	 * Removes a specific element in the list.
@@ -194,14 +199,13 @@ public class LinkedListRecursive<E> {
 		 * @param value the value to check
 		 * @return true if it is contained
 		 */
-		private boolean contains(ListNode current, E value) {
-			if (current == null) {
+		private boolean contains(E value) {
+			if (next == null) {
 				return false;
-			} else if (current.data == value) {
+			} else if (this.data == value) {
 				return true;
 			} else {
-				ListNode c = current.next;
-				return contains(c, value);
+				return next.contains(value);
 			}
 		}
 		/**
@@ -212,9 +216,6 @@ public class LinkedListRecursive<E> {
 		 */
 		private boolean recursiveAdd(ListNode current, E value) {
 			// return false if is same
-			if (current.data.equals(value)) {
-				throw new IllegalArgumentException("SAME");
-			}
 			if (current.next == null) {
 				current.next = new ListNode(value);
 				size++;
@@ -230,18 +231,13 @@ public class LinkedListRecursive<E> {
 		 * @return returns the data of the removed element.
 		 */
 		private E remove(int idx) {
-			if(idx == 0) {
+			if(idx == 1) {
 				E removedEle = this.next.data;
 				this.next = this.next.next;
-				front = this;
 				size--;
 				return removedEle;
 			}
-		
-			front = front.next;
-			int x = idx;
-			x--;
-			return remove(x);
+			return next.remove(idx - 1);
 		}
 		/**
 		 * Removes a specific element in the list.

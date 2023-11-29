@@ -40,6 +40,8 @@ class LinkedListRecursiveTest {
 		assertDoesNotThrow(() -> intList.add(200));
 		assertDoesNotThrow(() -> intList.add(301));
 		assertDoesNotThrow(() -> intList.add(999));
+		assertThrows(IllegalArgumentException.class, 
+				() -> intList.add(999));
 		assertEquals(intList.size(), 11);
 				assertEquals(intList.get(0), 15);
 				assertEquals(intList.get(1), 5);
@@ -66,13 +68,15 @@ class LinkedListRecursiveTest {
 	void testRemoveInt() {
 		LinkedListRecursive<Integer> intList = new LinkedListRecursive<Integer>();
 		LinkedListRecursive<String> stringList = new LinkedListRecursive<String>();
-		assertDoesNotThrow(() -> intList.add(0, 15));
-		assertDoesNotThrow(() -> stringList.add(0, "Whatever"));
-		assertEquals("Whatever", stringList.remove(0));
-		intList.add(1, 10);
-		intList.add(2, 11);
-		intList.add(3, 12);
-		intList.add(4, 13);
+		
+		intList.add(15);
+		intList.add(10);
+		intList.add(11);
+		intList.add(12);
+		intList.add(13);
+		intList.add(14);
+
+
 		assertThrows(IndexOutOfBoundsException.class, 
 				() -> intList.remove(10));
 		assertThrows(IndexOutOfBoundsException.class, 
@@ -81,6 +85,14 @@ class LinkedListRecursiveTest {
 		assertEquals(intList.get(1), 11);
 		assertEquals(13, intList.remove(3));
 		assertEquals(15, intList.remove(0));
+		assertEquals(3, intList.size());
+		
+		assertEquals(11, intList.get(0));
+		assertEquals(12, intList.get(1));
+		assertEquals(14, intList.get(2));
+
+
+		
 	}
 
 	/**
@@ -149,6 +161,45 @@ class LinkedListRecursiveTest {
 		assertEquals(3, intList.size());
 		intList.remove(0);
 		assertEquals(2, intList.size());
+	}
+	/**
+	 * Tests to see whether returned size is correct
+	 */
+	@Test
+	void testContains() {
+		LinkedListRecursive<Integer> intList = new LinkedListRecursive<Integer>();
+		assertDoesNotThrow(() -> intList.add(15));
+		assertDoesNotThrow(() -> intList.add(5));
+		assertDoesNotThrow(() -> intList.add(3));
+		assertDoesNotThrow(() -> intList.add(7));
+		assertDoesNotThrow(() -> intList.add(14));
+		assertDoesNotThrow(() -> intList.add(13));
+		assertDoesNotThrow(() -> intList.add(300));
+		assertDoesNotThrow(() -> intList.add(400));
+		assertDoesNotThrow(() -> intList.add(200));
+		assertDoesNotThrow(() -> intList.add(301));
+		assertDoesNotThrow(() -> intList.add(999));
+		assertTrue(intList.contains(15));
+		assertTrue(intList.contains(5));
+		assertTrue(intList.contains(3));
+		assertTrue(intList.contains(7));
+		assertTrue(intList.contains(14));
+		assertTrue(intList.contains(13));
+		assertTrue(intList.contains(300));
+		assertTrue(intList.contains(400));
+		assertTrue(intList.contains(200));
+		assertTrue(intList.contains(301));
+		assertTrue(intList.contains(999));
+
+
+
+
+
+
+
+
+
+
 	}
 
 }
