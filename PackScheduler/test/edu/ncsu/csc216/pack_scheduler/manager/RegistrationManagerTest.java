@@ -461,14 +461,18 @@ public class RegistrationManagerTest {
 		assertEquals(0, f.getSchedule().getNumScheduledCourses());
 		
 		// Cannot run these because currently logged in as a faculty
-		assertFalse(manager.addFacultyToCourse(c, f));
-		assertFalse(manager.removeFacultyFromCourse(c, f));
+		assertThrows(IllegalArgumentException.class, 
+				() -> manager.addFacultyToCourse(c, f));
+		assertThrows(IllegalArgumentException.class, 
+				() -> manager.removeFacultyFromCourse(c, f));
 		assertNull(c.getInstructorId());
 		assertEquals(0, f.getSchedule().getNumScheduledCourses());
 		
 		manager.logout();
-		assertFalse(manager.addFacultyToCourse(c, f));
-		assertFalse(manager.removeFacultyFromCourse(c, f));
+		assertThrows(IllegalArgumentException.class, 
+				() -> manager.addFacultyToCourse(c, f));
+		assertThrows(IllegalArgumentException.class, 
+				() -> manager.removeFacultyFromCourse(c, f));
 		
 		// Login as registrar and add faculty to course
 		manager.login(registrarUsername, registrarPassword);
