@@ -95,7 +95,9 @@ public class LinkedListRecursive<E> {
 			front = new ListNode(value);
 			size++;
 			return true;
-		} 
+		} else if (contains(value)) {
+			throw new IllegalArgumentException();
+		}
 		
 		return front.recursiveAdd(front, value);
 	}
@@ -110,7 +112,9 @@ public class LinkedListRecursive<E> {
 			front = new ListNode(value);
 			size++;
 			return true;
-		} 
+		} else if (contains(value)) {
+			throw new IllegalArgumentException();
+		}
 		return front.recursiveAdd(front, value);
 	}
 	/**

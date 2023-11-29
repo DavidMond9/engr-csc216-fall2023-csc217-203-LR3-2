@@ -40,8 +40,8 @@ class LinkedListRecursiveTest {
 		assertDoesNotThrow(() -> intList.add(200));
 		assertDoesNotThrow(() -> intList.add(301));
 		assertDoesNotThrow(() -> intList.add(999));
-		// assertThrows(IllegalArgumentException.class,
-		// () -> intList.add(999));
+		assertThrows(IllegalArgumentException.class,
+		() -> intList.add(999));
 		assertEquals(intList.size(), 11);
 		
 		assertEquals(intList.get(0), 15);
