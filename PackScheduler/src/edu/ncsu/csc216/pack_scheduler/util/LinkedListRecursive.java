@@ -96,9 +96,7 @@ public class LinkedListRecursive<E> {
 			size++;
 			return true;
 		} 
-		if (this.contains(value)) {
-			throw new IllegalArgumentException();
-		}
+		
 		return front.recursiveAdd(front, value);
 	}
 	/**
@@ -195,15 +193,15 @@ public class LinkedListRecursive<E> {
 		}
 		/**
 		 * Checks if something is contained
-		 * @param current the current ListNode
+		 * 
 		 * @param value the value to check
 		 * @return true if it is contained
 		 */
 		private boolean contains(E value) {
-			if (next == null) {
-				return false;
-			} else if (this.data == value) {
+			if (data.equals(value)) {
 				return true;
+			} else if (next == null) {
+				return false;
 			} else {
 				return next.contains(value);
 			}

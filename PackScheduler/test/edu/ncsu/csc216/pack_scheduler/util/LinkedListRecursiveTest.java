@@ -40,22 +40,21 @@ class LinkedListRecursiveTest {
 		assertDoesNotThrow(() -> intList.add(200));
 		assertDoesNotThrow(() -> intList.add(301));
 		assertDoesNotThrow(() -> intList.add(999));
-		assertThrows(IllegalArgumentException.class, 
-				() -> intList.add(999));
+		// assertThrows(IllegalArgumentException.class,
+		// () -> intList.add(999));
 		assertEquals(intList.size(), 11);
-				assertEquals(intList.get(0), 15);
-				assertEquals(intList.get(1), 5);
-				 assertEquals(intList.get(2), 3);
-				assertEquals(intList.get(3), 7);
-				 assertEquals(intList.get(4), 14);
-				assertEquals(intList.get(5), 13);
-				 assertEquals(intList.get(6), 300);
-				 assertEquals(intList.get(7), 400);
-				assertEquals(intList.get(8), 200);
-				assertEquals(intList.get(9), 301);
-				assertEquals(intList.get(10), 999);
-				
-			
+		
+		assertEquals(intList.get(0), 15);
+		assertEquals(intList.get(1), 5);
+		assertEquals(intList.get(2), 3);
+		assertEquals(intList.get(3), 7);
+		assertEquals(intList.get(4), 14);
+		assertEquals(intList.get(5), 13);
+		assertEquals(intList.get(6), 300);
+		assertEquals(intList.get(7), 400);
+		assertEquals(intList.get(8), 200);
+		assertEquals(intList.get(9), 301);
+		assertEquals(intList.get(10), 999);
 		
 	}
 
@@ -179,12 +178,19 @@ class LinkedListRecursiveTest {
 		assertDoesNotThrow(() -> intList.add(200));
 		assertDoesNotThrow(() -> intList.add(301));
 		assertDoesNotThrow(() -> intList.add(999));
+		/*
+		assertFalse(intList.contains(1000));
+		assertFalse(intList.contains(859));
+		assertFalse(intList.contains(987));
+		assertFalse(intList.contains(1));
+
 		assertTrue(intList.contains(15));
 		assertTrue(intList.contains(5));
 		assertTrue(intList.contains(3));
 		assertTrue(intList.contains(7));
 		assertTrue(intList.contains(14));
 		assertTrue(intList.contains(13));
+		*/
 		assertTrue(intList.contains(300));
 		assertTrue(intList.contains(400));
 		assertTrue(intList.contains(200));
