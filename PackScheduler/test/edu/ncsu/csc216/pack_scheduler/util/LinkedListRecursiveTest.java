@@ -184,8 +184,7 @@ class LinkedListRecursiveTest {
 	void testRemoveIntE() {
 		LinkedListRecursive<String> stringList = new LinkedListRecursive<String>();
 		
-		assertThrows(IndexOutOfBoundsException.class, 
-				() -> stringList.remove(12));
+		assertFalse(stringList.remove("12"));
 		
 		stringList.add("1");
 		stringList.add("2");
@@ -196,8 +195,7 @@ class LinkedListRecursiveTest {
 		
 		assertEquals(6, stringList.size());
 
-		assertThrows(IndexOutOfBoundsException.class, 
-				() -> stringList.remove(null));
+		assertFalse(stringList.remove(null));
 		
 		assertTrue(stringList.remove("1"));
 		assertTrue(stringList.remove("4"));

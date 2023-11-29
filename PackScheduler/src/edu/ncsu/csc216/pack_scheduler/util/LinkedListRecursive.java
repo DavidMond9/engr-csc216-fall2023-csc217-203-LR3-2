@@ -228,7 +228,7 @@ public class LinkedListRecursive<E> {
 		if(ele == null || isEmpty()) {
 			// I am not sure I should throw this, it does not say.
 			// It just says to check.
-			throw new IndexOutOfBoundsException("Index out of bounds.");
+			return false;
 		}
 		if (front.data.equals(ele)) {
 			front = front.next;

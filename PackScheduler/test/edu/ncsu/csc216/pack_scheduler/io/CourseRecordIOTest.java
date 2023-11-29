@@ -15,6 +15,9 @@ import java.util.Scanner;
 
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.manager.RegistrationManager;
+import edu.ncsu.csc216.pack_scheduler.user.Faculty;
+import edu.ncsu.csc216.pack_scheduler.util.LinkedList;
 import edu.ncsu.csc217.collections.list.SortedList;
 
 /**
@@ -69,6 +72,7 @@ public class CourseRecordIOTest {
 		//Reset course_records.txt so that it's fine for other needed tests
 		Path sourcePath = FileSystems.getDefault().getPath("test-files", "starter_course_records.txt");
 		Path destinationPath = FileSystems.getDefault().getPath("test-files", "course_records.txt");
+		
 		try {
 			Files.deleteIfExists(destinationPath);
 			Files.copy(sourcePath, destinationPath);
