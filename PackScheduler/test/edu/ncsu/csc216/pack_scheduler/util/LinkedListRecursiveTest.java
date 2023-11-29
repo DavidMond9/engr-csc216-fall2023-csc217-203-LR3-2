@@ -131,7 +131,13 @@ class LinkedListRecursiveTest {
 		assertEquals(intList2.get(11), 301);
 		assertEquals(intList2.get(12), 999);
 		assertEquals(intList2.get(13), 39);
-
+		
+		assertThrows(IllegalArgumentException.class, 
+				() -> intList.add(0, 15));
+		assertThrows(IndexOutOfBoundsException.class, 
+				() -> intList.add(1245, 12857));
+		assertThrows(NullPointerException.class, 
+				() -> intList.add(1, null));
 	}
 
 	/**
@@ -196,7 +202,9 @@ class LinkedListRecursiveTest {
 		assertTrue(stringList.remove("1"));
 		assertTrue(stringList.remove("4"));
 		assertTrue(stringList.remove("6"));
-		
+		assertFalse(stringList.remove("6"));
+		assertFalse(stringList.remove("152346"));
+
 		assertEquals("2", stringList.get(0));
 		assertEquals("3", stringList.get(1));
 		assertEquals("5", stringList.get(2));
