@@ -290,7 +290,7 @@ public class LinkedListRecursive<E> {
 		 * @param value the value to add
 		 * @return true if the value is added
 		 */
-		private boolean add(E value) {
+		public boolean add(E value) {
 			// return false if is same
 			if (next == null) {
 				next = new ListNode(value);
@@ -321,7 +321,7 @@ public class LinkedListRecursive<E> {
 		 * @param idx the index to be removing the element at.
 		 * @return returns the data of the removed element.
 		 */
-		private E remove(int idx) {
+		public E remove(int idx) {
 			if(idx == 1) {
 				E removedEle = this.next.data;
 				this.next = this.next.next;
@@ -353,7 +353,7 @@ public class LinkedListRecursive<E> {
 		 * @param value The value to set.
 		 * @return The value that was replaced.
 		 */
-		private E set(int idx, E value) {
+		public E set(int idx, E value) {
 			if(idx == 0) {
 				E oldValue = data;
 				data = value;
