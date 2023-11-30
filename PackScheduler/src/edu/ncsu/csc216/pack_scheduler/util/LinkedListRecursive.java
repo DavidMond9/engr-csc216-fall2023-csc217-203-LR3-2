@@ -257,15 +257,6 @@ public class LinkedListRecursive<E> {
 		}
 		
 		/**
-		 * Inserts a ListNode into a list given data and the next node in the list
-		 * @param data Data to put in the listNode
-		 * @param next The next node in the list
-		 */
-		public ListNode(E data, ListNode next) {
-			this.data = data;
-			this.next = next;
-		}
-		/**
 		 * Gets the data in the list node at a specific index.
 		 * @param idx index to get the data from.
 		 * @return Returns an element of the data in the list node.
@@ -285,7 +276,8 @@ public class LinkedListRecursive<E> {
 		private boolean contains(E value) {
 			if (data.equals(value)) {
 				return true;
-			} else if (next == null) {
+			} 
+			if (next == null) {
 				return false;
 			} else {
 				return next.contains(value);

@@ -148,7 +148,6 @@ class LinkedListRecursiveTest {
 	@Test
 	void testRemoveInt() {
 		LinkedListRecursive<Integer> intList = new LinkedListRecursive<Integer>();
-		LinkedListRecursive<String> stringList = new LinkedListRecursive<String>();
 		
 		intList.add(15);
 		intList.add(10);
