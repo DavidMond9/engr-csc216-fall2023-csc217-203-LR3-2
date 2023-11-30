@@ -100,7 +100,7 @@ public class LinkedListRecursive<E> {
 			throw new IllegalArgumentException();
 		}
 		
-		return front.recursiveAdd(value);
+		return front.add(value);
 	}
 
 	/**
@@ -150,7 +150,7 @@ public class LinkedListRecursive<E> {
 			}
 			
 		} 		
-		return front.recursiveAdd(idx, value);
+		return front.add(idx, value);
 	}
 
 	/**
@@ -262,7 +262,7 @@ public class LinkedListRecursive<E> {
 		 * @param idx index to get the data from.
 		 * @return Returns an element of the data in the list node.
 		 */
-		private E get(int idx) {
+		public E get(int idx) {
 			if(idx == 0) {
 				return data;
 			}
@@ -274,7 +274,7 @@ public class LinkedListRecursive<E> {
 		 * @param value the value to check
 		 * @return true if it is contained
 		 */
-		private boolean contains(E value) {
+		public boolean contains(E value) {
 			if (data.equals(value)) {
 				return true;
 			} 
@@ -290,14 +290,14 @@ public class LinkedListRecursive<E> {
 		 * @param value the value to add
 		 * @return true if the value is added
 		 */
-		private boolean recursiveAdd(E value) {
+		private boolean add(E value) {
 			// return false if is same
 			if (next == null) {
 				next = new ListNode(value);
 				size++;
 				return true;
 			} else {
-				return next.recursiveAdd(value);
+				return next.add(value);
 			}
 		}
 		/**
@@ -306,7 +306,7 @@ public class LinkedListRecursive<E> {
 		 * @param value the value to add
 		 * @return true if the value is added
 		 */
-		private boolean recursiveAdd(int idx, E value) {
+		public boolean add(int idx, E value) {
 			if(idx == 1) {
 				ListNode temp = next;
 				next = new ListNode(value);
@@ -314,7 +314,7 @@ public class LinkedListRecursive<E> {
 				size++;
 				return true;
 			}
-			return next.recursiveAdd(idx - 1, value);
+			return next.add(idx - 1, value);
 		}
 		/**
 		 * Removes an element at a specific index in the list.
