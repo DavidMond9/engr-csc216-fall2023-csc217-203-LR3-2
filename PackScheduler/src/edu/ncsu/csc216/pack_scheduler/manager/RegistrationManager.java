@@ -271,7 +271,7 @@ public class RegistrationManager {
 		if (currentUser != registrar) {
 			throw new IllegalArgumentException();
 		}
-		return currentUser != null && currentUser.equals(registrar) && (f.getSchedule().addCourseToSchedule(c));
+		return currentUser != null && currentUser.equals(registrar) && f.getSchedule().addCourseToSchedule(c);
 	}
 	
 	/**
@@ -284,7 +284,7 @@ public class RegistrationManager {
 		if (currentUser != registrar) {
 			throw new IllegalArgumentException();
 		}
-		return currentUser != null && currentUser.equals(registrar) && (f.getSchedule().removeCourseFromSchedule(c));
+		return currentUser != null && currentUser.equals(registrar) && f.getSchedule().removeCourseFromSchedule(c);
 	}
 	
 	/**
