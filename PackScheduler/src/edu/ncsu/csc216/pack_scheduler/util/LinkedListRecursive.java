@@ -49,7 +49,8 @@ public class LinkedListRecursive<E> {
 		if(idx < 0 || idx >= size) {
 			throw new IndexOutOfBoundsException("Index out of bounds.");
 		}
-		return front.get(idx);
+		E returnVal = front.get(idx);
+		return returnVal;
 	}
 	/**
 	 * This implementation will have a public/private pair of methods. The public
