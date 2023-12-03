@@ -30,7 +30,7 @@
 
 ## Lab 11
 
-- **Implement and Test LinkedListRecursive** | **Owner:** Warren Long, **Due:** 11/27, **Status:** Started
+- **Implement and Test LinkedListRecursive** | **Owner:** Warren Long, **Due:** 11/27, **Status:** Finished
 
 - **Implement and Test FacultySchedule** | **Owner:** David Mond, **Due:** 11/27, **Status:** Finished
 
