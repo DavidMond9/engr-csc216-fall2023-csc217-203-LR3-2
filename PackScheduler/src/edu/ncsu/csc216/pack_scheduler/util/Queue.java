@@ -31,8 +31,6 @@ public interface Queue<E> {
 	 * empty, an NoSuchElementException is thrown
 	 * 
 	 * @return the element at the front
-	 * @throws NoSuchElementException if the Queue is
-	 * empty, an NoSuchElementException is thrown
 	 */
 	E dequeue();
 	/**

@@ -18,7 +18,6 @@ public interface Stack<E> {
 	/**
 	 * Removes and returns the element from the top of the stack (the last element added).
 	 * @return The element that was removed.
-	 * @throws EmptyStackException if the stack is empty.
 	 */
 	E pop();
 	
