@@ -40,4 +40,4 @@
 
 - **Update RegistrationManager** | **Owner:** Joey Hughes, **Due:** 12/2, **Status:** Finished
 
-- **Generate Javadoc and Double Check** | **Owner:** David Mond, **Due:** 12/3, **Status:** Pending
+- **Generate Javadoc and Double Check** | **Owner:** David Mond, **Due:** 12/3, **Status:** Finished
